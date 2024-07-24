@@ -1,0 +1,46 @@
+.orange-background {
+  background-color: #FF9600;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.container11 {
+  margin-top: 0px;
+  text-align: center;
+}
+
+.row11 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Adjust the gap for space between cards */
+}
+
+.cols11 {
+  flex: 1 1 calc(33.33% - 40px); /* Adjust width to fit 3 cards per row with gaps */
+  box-sizing: border-box;
+  margin-bottom: 20px; /* Space between rows */
+}
+
+.container_alumno_cards11 {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.container_alumno_cards11 img {
+  max-width: 100px;
+  height: auto;
+}
+
+.container_alumno_cards11 p {
+  margin-top: 15px;
+}
+
+.container_alumno_cards11:hover {
+  transform: scale(1.05);
+}

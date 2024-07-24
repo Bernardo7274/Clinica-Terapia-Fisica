@@ -1,0 +1,1100 @@
+{% extends './base.html' %}
+
+{% block title%} Miembro Superior {% endblock %}
+
+{% block body %}
+<h1 class="text-center bold-text">Miembro Superior</h1>
+<div class="card mb-3">
+    <div class="card-header">
+        Ficha de Identificación
+    </div>
+    <div class="card-body">
+        <form class="row g-3 needs-validation" novalidate id="fichaForm">
+            <div class="form-group col-md-8">
+                <label for="fecha">Fecha de elaboración:</label>
+                <input type="date" class="form-control" id="fecha" name="fecha">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="folio" class="form-label">Folio:</label>
+                <input type="text" class="form-control" id="folio" required>
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="form-group col-md-6 mt-1">
+                <label for="nombrePaciente" class="form-label">Nombre del Paciente:</label>
+                <input type="text" class="form-control" id="nombrePaciente" required>
+                <div class="valid-feedback"></div>
+            </div>
+
+            <div class="form-group col-md-3 mt-1">
+                <label for="sexo">Sexo:</label>
+                <select class="form-control" id="sexo" name="sexo">
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-3 mt-1">
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
+            </div>
+
+            <div class="form-group mt-1 col-md-4">
+                <label for="edad" class="form-label">Edad:</label>
+                <input type="number" class="form-control" id="edad" required>
+                <div class="valid-feedback"></div>
+            </div>
+
+            <div class="form-group mt-1 col-md-4">
+                <label for="lugarNacimiento" class="form-label">Lugar de nacimiento:</label>
+                <input type="text" class="form-control" id="lugarNacimiento" required>
+                <div class="valid-feedback"></div>
+            </div>
+
+            <div class="form-group mt-1 col-md-3">
+                <label for="civil">Estado Civil:</label>
+                <select class="form-control" id="civil" name="civil">
+                    <option value="soltero">Soltero(a)</option>
+                    <option value="casado">Casado(a)</option>
+                </select>
+            </div>
+            <div class="form-group mt-1 col-md-8">
+                <label for="ocupacion" class="form-label">Ocupación:</label>
+                <input type="text" class="form-control" id="ocupacion" required>
+                <div class="valid-feedback"></div>
+            </div>
+
+            <div class="form-group mt-1 col-md-4">
+                <label for="nacionalidad" class="form-label">Nacionalidad:</label>
+                <input type="text" class="form-control" id="nacionalidad" required>
+                <div class="valid-feedback"></div>
+            </div>
+
+            <div class="form-group mt-1 col-md-8">
+                <label for="domicilio" class="form-label">Domicilio Actual:</label>
+                <input type="text" class="form-control" id="domicilio" required>
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="form-group mt-1 col-md-4">
+                <label for="telefono" class="form-label">Número Telefónico:</label>
+                <input type="text" class="form-control" id="telefono" required>
+                <div class="valid-feedback"></div>
+            </div>
+
+            <p class="text-center col-md-12 mt-1"><strong>Contacto de Emergencia</strong></p>
+
+            <div class="col-md-8 form-group mt-1">
+                <label for="nombreContactoEmergencia" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombreContactoEmergencia" required>
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="form-group mt-1 col-md-4">
+                <label for="telefonoEmergencia" class="form-label">Número Telefónico:</label>
+                <input type="text" class="form-control" id="telefonoEmergencia" required>
+                <div class="valid-feedback"></div>
+            </div>
+
+            <div class="col-md-4 form-group mt-1">
+                <label for="diagnosticoMedico" class="form-label">Diagnóstico Médico:</label>
+                <input type="text" class="form-control" id="diagnosticoMedico" required>
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="col-md-4 form-group mt-1">
+                <label for="estadoCivil" class="form-label">Elaboró historial clínico:</label>
+                <input type="text" class="form-control" id="estadoCivil" required>
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="col-md-4 form-group mt-1">
+                <label for="motivoConsulta" class="form-label">Motivo de Consulta:</label>
+                <input type="text" class="form-control" id="motivoConsulta" required>
+                <div class="valid-feedback"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="contenedorFicha1" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            Antecedentes Personales No Patológicos
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor1()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <p class="text-center col-md-12 mt-1"><strong>Vivienda</strong></p>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="tipocasa">Propia/Rentada:</label>
+                    <input type="text" class="form-control" id="tipocasa" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="ventilacion">Ventilación:</label>
+                    <input type="text" class="form-control" id="ventilacion" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="iluminacion">Iluminación:</label>
+                    <input type="text" class="form-control" id="iluminacion" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="piso">Piso:</label>
+                    <input type="text" class="form-control" id="piso" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="electrodomesticos">Electrodomésticos:</label>
+                    <input type="text" class="form-control" id="electrodomesticos" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="servicios">Servicios:</label>
+                    <input type="text" class="form-control" id="servicios" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-12">
+                    <label for="descripVivienda">Descripción de la vivienda:</label>
+                    <input type="text" class="form-control" id="descripVivienda" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <p class="text-center col-md-12 mt-1"><strong>Alimentación</strong></p>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="noComidas">No. de comidas al día:</label>
+                    <input type="number" class="form-control" id="noComidas" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="aguaLts">Agua(lts):</label>
+                    <input type="number" class="form-control" id="aguaLts" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="gruposAlimenticios">Grupos alimenticios que consume:</label>
+                    <input type="text" class="form-control" id="gruposAlimenticios" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-12">
+                    <label for="descripRutinaAlimentaria">Descripción de la rutina alimenticia:</label>
+                    <input type="text" class="form-control" id="descripRutinaAlimentaria" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <p class="text-center col-md-12 mt-1"><strong>Higiene</strong></p>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="higieneBucal">Higiene bucal:</label>
+                    <input type="text" class="form-control" id="higieneBucal" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="bañosxdia">Baños al día:</label>
+                    <input type="text" class="form-control" id="bañosxdia" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="cambiosRopa">Cambios de ropa:</label>
+                    <input type="text" class="form-control" id="cambiosRopa" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <p class="text-center col-md-12 mt-1"><strong>OCIO Y OCUPACIÓN (frecuencia, intensidad semanal)
+                    </strong> </p>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="actFisica">Actividad Física:</label>
+                    <input type="text" class="form-control" id="actFisica" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="deporte">Deporte:</label>
+                    <input type="text" class="form-control" id="deporte" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="ocio">Ocio:</label>
+                    <input type="text" class="form-control" id="ocio" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+                <div class="form-group mt-1 col-md-12">
+                    <label for="ocupacion1">Ocupación:</label>
+                    <input type="text" class="form-control" id="ocupacion1" placeholder="">
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha2" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            Antecedentes Heredofamiliares
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor2()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead class="col">
+                    <tr>
+                        <th scope="col">Enfermedad</th>
+                        <th scope="col">Sí</th>
+                        <th scope="col">No</th>
+                        <th scope="col">Parentesco</th>
+                        <th scope="col">Vivo</th>
+                        <th scope="col">Muerto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cáncer</td>
+                        <td><input type="checkbox" name="cancer_si" value="1"></td>
+                        <td><input type="checkbox" name="cancer_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="cancer_parentesco" placeholder="Parentesco">
+                        </td>
+                        <td><input type="checkbox" name="cancer_vivo" value="1"></td>
+                        <td><input type="checkbox" name="cancer_muerto" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Diabetes</td>
+                        <td><input type="checkbox" name="diabetes_si" value="1"></td>
+                        <td><input type="checkbox" name="diabetes_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="diabetes_parentesco" placeholder="Parentesco">
+                        </td>
+                        <td><input type="checkbox" name="diabetes_vivo" value="1"></td>
+                        <td><input type="checkbox" name="diabetes_muerto" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Hipertensión</td>
+                        <td><input type="checkbox" name="hipertension_si" value="1"></td>
+                        <td><input type="checkbox" name="hipertension_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="hipertension_parentesco"
+                                placeholder="Parentesco"></td>
+                        <td><input type="checkbox" name="hipertension_vivo" value="1"></td>
+                        <td><input type="checkbox" name="hipertension_muerto" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Enfermedades Cardiacas</td>
+                        <td><input type="checkbox" name="cardiacas_si" value="1"></td>
+                        <td><input type="checkbox" name="cardiacas_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="cardiacas_parentesco"
+                                placeholder="Parentesco"></td>
+                        <td><input type="checkbox" name="cardiacas_vivo" value="1"></td>
+                        <td><input type="checkbox" name="cardiacas_muerto" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Enfermedades Mentales</td>
+                        <td><input type="checkbox" name="mentales_si" value="1"></td>
+                        <td><input type="checkbox" name="mentales_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="mentales_parentesco" placeholder="Parentesco">
+                        </td>
+                        <td><input type="checkbox" name="mentales_vivo" value="1"></td>
+                        <td><input type="checkbox" name="mentales_muerto" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Alergias</td>
+                        <td><input type="checkbox" name="alergias_si" value="1"></td>
+                        <td><input type="checkbox" name="alergias_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="alergias_parentesco" placeholder="Parentesco">
+                        </td>
+                        <td><input type="checkbox" name="alergias_vivo" value="1"></td>
+                        <td><input type="checkbox" name="alergias_muerto" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="form-group mt-1 col-md-12">
+                <label for="otros">Otros:</label>
+                <input type="text" class="form-control" id="otros" placeholder="">
+                <div class="valid-feedback">
+                </div>
+            </div>
+            <div class="form-group mt-1 col-md-12">
+                <label for="observaciones">Observaciones:</label>
+                <input type="text" class="form-control" id="observaciones" placeholder="">
+                <div class="valid-feedback">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha3" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            Antecedentes Personales Patológicos
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor3()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead class="col">
+                    <tr>
+                        <th scope="col">Patologías</th>
+                        <th scope="col">Sí</th>
+                        <th scope="col">No</th>
+                        <th scope="col">Edad que se presento</th>
+                        <th scope="col">Secuelas / Complicaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Traumatismos</td>
+                        <td><input type="checkbox" name="traumatismos_si" value="1"></td>
+                        <td><input type="checkbox" name="traumatismos_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="traumatismos_edad" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="traumatismos_secuelas" placeholder=""></td>
+
+                    </tr>
+                    <tr>
+                        <td>Cirugías</td>
+                        <td><input type="checkbox" name="cirugías_si" value="1"></td>
+                        <td><input type="checkbox" name="cirugías_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="cirugías_edad" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="cirugías_secuelas" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td>Luxaciones</td>
+                        <td><input type="checkbox" name="luxaciones_si" value="1"></td>
+                        <td><input type="checkbox" name="luxaciones_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="luxaciones_edad" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="luxaciones_secuelas" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td>Alergias</td>
+                        <td><input type="checkbox" name="alergias_si" value="1"></td>
+                        <td><input type="checkbox" name="alergias_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="alergias_edad" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="alergias_secuelas" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td>Toxicomanías</td>
+                        <td><input type="checkbox" name="toxicomanías_si" value="1"></td>
+                        <td><input type="checkbox" name="toxicomanías_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="toxicomanías_edad" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="toxicomanías_secuelas" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td>Padecimientos_psiquiátricos</td>
+                        <td><input type="checkbox" name="psiquiátricos_si" value="1"></td>
+                        <td><input type="checkbox" name="psiquiátricos_no" value="0"></td>
+                        <td><input type="text" class="form-control" name="psiquiátricos_edad" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="psiquiátricos_secuelas" placeholder=""></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="form-group mt-1 col-md-12">
+                <label for="inmunizaciones">Inmunizaciones:</label>
+                <input type="text" class="form-control" id="inmunizaciones" placeholder="">
+                <div class="valid-feedback">
+                </div>
+            </div>
+            <div class="form-group mt-1 col-md-12">
+                <label for="observaciones_ante">Observaciones:</label>
+                <input type="text" class="form-control" id="observaciones_ante" placeholder="">
+                <div class="valid-feedback">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha4" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            Antecedentes Ginecobstétricos
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor4()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="menarquia">Menarquía:</label>
+                <input type="text" class="form-control" id="menarquia" placeholder="Menarquía">
+            </div>
+            <div class="form-group">
+                <label for="ultimaMenstruacion">Fecha de la última menstruación:</label>
+                <input type="date" class="form-control" id="ultimaMenstruacion"
+                    placeholder="Fecha de la última menstruación">
+            </div>
+            <div class="form-group">
+                <label for="caracteristicasMenstruacion">Características de la menstruación:</label>
+                <input type="text" class="form-control" id="caracteristicasMenstruacion"
+                    placeholder="Duración, frecuencia, cantidad de flujo, dolor, etc.">
+            </div>
+            <div class="form-group">
+                <label for="inicioVidaSexual">Inicio de la vida sexual:</label>
+                <input type="text" class="form-control" id="inicioVidaSexual" placeholder="Inicio de la vida sexual">
+            </div>
+            <div class="form-group">
+                <label for="usoAnticonceptivos">Uso de anticonceptivos:</label>
+                <input type="text" class="form-control" id="usoAnticonceptivos" placeholder="Uso de anticonceptivos">
+            </div>
+            <div class="form-group">
+                <label for="numEmbarazos">No. de embarazos:</label>
+                <input type="number" class="form-control" id="numEmbarazos" placeholder="Número de embarazos">
+            </div>
+            <div class="form-group">
+                <label for="numPartos">No. de partos:</label>
+                <input type="number" class="form-control" id="numPartos" placeholder="Número de partos">
+            </div>
+            <div class="form-group">
+                <label for="numCesareas">No. de cesáreas:</label>
+                <input type="number" class="form-control" id="numCesareas" placeholder="Número de cesáreas">
+            </div>
+            <div class="form-group">
+                <label for="observacionesGine">Observaciones:</label>
+                <input type="text" class="form-control" id="observacionesGine" placeholder="Observaciones">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha5" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            Antecedentes De Padecimiento Actual
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor5()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="describe">Describe: ¿Qué le paso? ¿hace cuánto? ¿cómo se lesiono? ¿qué síntomas
+                    presentó? ¿fue al médico ¿tomó algún medicamento? ¿se realizo algún estudio? ¿cuáles? ¿cómo ha
+                    evolucionado los síntomas? ¿hay alguna actividad o movimiento que intensifique los síntomas? ¿en
+                    algún momento del día se intensifica más? ¿existe alguna actividad que se ha visto limitada por
+                    hacer?, etc. :
+                </label>
+                <textarea class="form-control" name="describe" id="ac_descripcion" style="height: 200px"
+                    placeholder="Escribe aquí">
+                </textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha6" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            Exploración Física
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor6()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <p class="text-start col-md-12"><strong>1. Habitus exterior:</strong></p>
+                <div class="form-group col-md-12">
+                    <label for="habitusExte">¿cómo llega el px? (caminado, con apoyo, etc), ¿llega solo o
+                        acompañado?, personalidad (feliz, nervioso,
+                        etc):
+                    </label>
+                    <textarea class="form-control" name="habitusExte" id="habitusExte" style="height: 100px"
+                        placeholder="Escribe aquí"></textarea>
+                </div>
+                <p class="text-start col-md-12 mt-1"><strong>2. Somatometría:</strong></p>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="peso">Peso:</label>
+                    <input type="text" class="form-control" id="peso" placeholder="">
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="talla">Altura:</label>
+                    <input type="text" class="form-control" id="talla" placeholder="">
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="tensionArterial">IMC:</label>
+                    <input type="text" class="form-control" id="tensionArterial" placeholder="">
+                </div>
+                <p class="text-start col-md-12 mt-1"><strong>3. Signos vitales:</strong></p>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="temperatura">Temperatura:</label>
+                    <input type="text" class="form-control" id="temperatura" placeholder="">
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="frecuenciaCardiaca">Pulso cardíaco:</label>
+                    <input type="text" class="form-control" id="frecuenciaCardiaca" placeholder="">
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="frecuenciaRespiratoria">Frecuencia respiratoria:</label>
+                    <input type="text" class="form-control" id="frecuenciaRespiratoria" placeholder="">
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="saturacion_de_oxígeno">Saturacion de oxígeno:</label>
+                    <input type="text" class="form-control" id="saturacion_de_oxígeno" placeholder="">
+                </div>
+                <div class="form-group mt-1 col-md-4">
+                    <label for="presionArterial">Presión arterial:</label>
+                    <input type="text" class="form-control" id="presionArterial" placeholder="">
+                </div>
+                <div class="form-group mt-1 col-md-8">
+                    <label for="observacionesexplofisica">Observaciones:</label>
+                    <input type="text" class="form-control" id="observacionesexplofisica" placeholder="">
+                </div>
+                <div class="form-group mt-1 col-md-12">
+                    <label for="resultadospreviosyactuales">Resultados previos y actuales de estudios de laboratorio
+                        y gabinete:</label>
+                    <input type="text" class="form-control" id="resultadospreviosyactuales" placeholder="">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha7" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor7()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <p class="text-center col-md-12 mt-1"><strong>Miembros Superiores</strong></p>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="observacionesMiembrosSuperiores">Observaciones</label>
+                        <textarea class="form-control" name="observacionesMiembrosSuperiores"
+                            id="observacionesMiembrosSuperiores" style="height: 200px"
+                            placeholder="Describir: Vellosidad, coloración (escala de 'Von Luschan'), cicatrices, manchas, inflamación (tumoración, coloración, etc)"></textarea>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="palpacionsuperior">Palpación:</label>
+                        <textarea class="form-control" name="palpacionsuperior" id="palpacionsuperior"
+                            style="height: 200px"
+                            placeholder="Describir: Consistencia, movilidad, elasticidad de la piel; temperatura, puntos de tensión y/o de dolor, etc."></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="dolorSuperior"><u>Dolor</u></label>
+                    <div class="text-center">
+                        <img src="/static/img/medicion3.PNG" class="img-fluid mt-3 mb-5" alt="dolor">
+                    </div>
+                    <label for=""><u>Número de dolor:</u></label>
+                    <input type="number" class="form-control" id="dolorexplofisica" placeholder="">
+                    <label for="Descripción"><u>Dolor</u></label>
+                    <textarea class="form-control" name="dolorSuperior" id="dolorSuperior" style="height: 100px"
+                        placeholder="Descripción del dolor (intensidad, frecuencia, tipo, localización, antigüedad, etc): ">
+                    </textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha8" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor8()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="form-group col-md-12">
+                    <label for="Fuerzamuscular"><u>Fuerza muscular</u></label>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <tr>
+                                    <th scope="col">Izquierdo</th>
+                                    <th scope="col">Movimiento</th>
+                                    <th scope="col">Derecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="abducción_y_rotación_superior_de_la_escápula_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Abducción y rotación superior de la escápula</td>
+                                    <td><input type="text" class="form-control" name="abducción_y_rotación_superior_de_la_escápula_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="elevación_de_la_escápula_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Elevación de la escápula</td>
+                                    <td><input type="text" class="form-control" name="elevación_de_la_escápula_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="aducción_de_la_escápula_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Aducción de la escápula</td>
+                                    <td><input type="text" class="form-control" name="aducción_de_la_escápula_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="aducción_y_descenso_escapular_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Aducción y descenso escapular</td>
+                                    <td><input type="text" class="form-control" name="aducción_y_descenso_escapular_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="aducción_y_rotación_inferior_de_la_escápula_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Aducción y rotación inferior de la escápula</td>
+                                    <td><input type="text" class="form-control" name="aducción_y_rotación_inferior_de_la_escápula_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="flexión_del_hombro_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Flexión del hombro</td>
+                                    <td><input type="text" class="form-control" name="flexión_del_hombro_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="extensión_de_hombro_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Extensión de hombro</td>
+                                    <td><input type="text" class="form-control" name="extensión_de_hombro_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="abducción_del_hombro_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Abducción del hombro</td>
+                                    <td><input type="text" class="form-control" name="abducción_del_hombro_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="abducción_horizontal_del_hombro_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Abducción horizontal del hombro</td>
+                                    <td><input type="text" class="form-control" name="abducción_horizontal_del_hombro_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="aducción_horizontal_del_hombro_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Aducción horizontal del hombro</td>
+                                    <td><input type="text" class="form-control" name="aducción_horizontal_del_hombro_derecho" placeholder=""></td>
+
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="rotación_externa_del_hombro_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Rotación externa del hombro</td>
+                                    <td><input type="text" class="form-control" name="rotación_externa_del_hombro_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="rotación_interna_del_hombro_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Rotación interna del hombro</td>
+                                    <td><input type="text" class="form-control" name="rotación_interna_del_hombro_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="flexión_de_codo_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Flexión de codo</td>
+                                    <td><input type="text" class="form-control" name="flexión_de_codo_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="extensión_de_codo_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Extensión de codo</td>
+                                    <td><input type="text" class="form-control" name="extensión_de_codo_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="supinación_del_antebrazo_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Supinación del antebrazo</td>
+                                    <td><input type="text" class="form-control" name="supinación_del_antebrazo_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="pronación_del_antebrazo_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Pronación del antebrazo</td>
+                                    <td><input type="text" class="form-control" name="pronación_del_antebrazo_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="flexión_de_la_muñeca_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Flexión de la muñeca</td>
+                                    <td><input type="text" class="form-control" name="flexión_de_la_muñeca_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="extensión_de_la_muñeca_izquierdo" placeholder=""></td>
+                                    <td class="text-center">Extensión de la muñeca</td>
+                                    <td><input type="text" class="form-control" name="extensión_de_la_muñeca_derecho" placeholder=""></td>
+                                </tr>
+                                <label>* Escala de Daniels y Worthingham</label>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha9" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor9()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="form-group col-md-12">
+                    <label for="goniometria"><u>Goniometría</u></label>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <tr>
+                                    <th scope="col">Rangos Normales</th>
+                                    <th scope="col">Izquierdo</th>
+                                    <th scope="col">Movimiento</th>
+                                    <th scope="col">Derecha</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0°-150°/170°</td>
+                                    <td><input type="text" class="form-control" name="0°-150°/170°_flexión_de_hombro_izquierdo" placeholder=""></td>
+                                    <td>Flexión de hombro</td>
+                                    <td><input type="text" class="form-control" name="0°-150°/170°_flexión_de_hombro_derecho" placeholder=""></td>
+
+                                </tr>
+                                <tr>
+                                    <td>0°-40°</td>
+                                    <td><input type="text" class="form-control" name="0°-40°_extensión_de_hombro_izquierdo" placeholder=""></td>
+                                    <td>Extensión de hombro</td>
+                                    <td><input type="text" class="form-control" name="0°-40°_extensión_de_hombro_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0-160°/180°</td>
+                                    <td><input type="text" class="form-control" name="0-160°/180°_abducción_de_hombro_izquierdo" placeholder=""></td>
+                                    <td>Abducción de hombro</td>
+                                    <td><input type="text" class="form-control" name="0-160°/180°_abducción_de_hombro_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-30°</td>
+                                    <td><input type="text" class="form-control" name="0°-30°_aducción_de_hombro_izquierdo" placeholder=""></td>
+                                    <td>Aducción de hombro</td>
+                                    <td><input type="text" class="form-control" name="0°-30°_aducción_de_hombro_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-70°</td>
+                                    <td><input type="text" class="form-control" name="0°-70°_rotación_externa_de_hombro_izquierdo" placeholder=""></td>
+                                    <td>Rotación externa de hombro</td>
+                                    <td><input type="text" class="form-control" name="0°-70°_rotación_externa_de_hombro_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-70°</td>
+                                    <td><input type="text" class="form-control" name="0°-70°_rotación_interna_de_hombro_izquierdo" placeholder=""></td>
+                                    <td>Rotación interna de hombro</td>
+                                    <td><input type="text" class="form-control" name="0°-70°_rotación_interna_de_hombro_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-150°</td>
+                                    <td><input type="text" class="form-control" name="0°-150°_flexión_de_codo_izquierdo" placeholder=""></td>
+                                    <td>Flexión de codo</td>
+                                    <td><input type="text" class="form-control" name="0°-150°_flexión_de_codo_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°(activa)-10°(pasiva)</td>
+                                    <td><input type="text" class="form-control" name="0°(activa)-10°(pasiva)_extensión_de_codo_izquierdo" placeholder=""></td>
+                                    <td>Extensión de codo</td>
+                                    <td><input type="text" class="form-control" name="0°(activa)-10°(pasiva)_extensión_de_codo_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-90°</td>
+                                    <td><input type="text" class="form-control" name="0°-90°_supinación_del_antebrazo_izquierdo" placeholder=""></td>
+                                    <td>Supinación del antebrazo</td>
+                                    <td><input type="text" class="form-control" name="0°-90°_supinación_del_antebrazo_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-90°</td>
+                                    <td><input type="text" class="form-control" name="0°-90°_pronación_del_antebrazo_izquierdo" placeholder=""></td>
+                                    <td>Pronación del antebrazo</td>
+                                    <td><input type="text" class="form-control" name="0°-90°_pronación_del_antebrazo_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-25°-30°</td>
+                                    <td><input type="text" class="form-control" name="0°-25°-30°_desviación_radial_de_muñeca_izquierdo" placeholder=""></td>
+                                    <td>Desviación radial de muñeca</td>
+                                    <td><input type="text" class="form-control" name="0°-25°-30°_desviación_radial_de_muñeca_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-30°-40°</td>
+                                    <td><input type="text" class="form-control" name="0°-30°-40°_desviación_cubital_de_la_muñeca_izquierdo" placeholder=""></td>
+                                    <td>Desviación cubital de la muñeca</td>
+                                    <td><input type="text" class="form-control" name="0°-30°-40°_desviación_cubital_de_la_muñeca_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-50°/60°</td>
+                                    <td><input type="text" class="form-control" name="0°-50°/60°_flexión_de_muñeca_izquierdo" placeholder=""></td>
+                                    <td>Flexión de muñeca</td>
+                                    <td><input type="text" class="form-control" name="0°-50°/60°_flexión_de_muñeca_derecho" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-35°/60°</td>
+                                    <td><input type="text" class="form-control" name="0°-35°/60°_extensión_de_muñeca_izquierdo" placeholder=""></td>
+                                    <td>Extensión de muñeca</td>
+                                    <td><input type="text" class="form-control" name="0°-35°/60°_extensión_de_muñeca_derecho" placeholder=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha10" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor10()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <label class="form-group col-md-8" for="Fuerzamuscular"><u>Reflejos osteotendinosos</u></label>
+                <div class="form-group row col-md-12 mx-auto d-flex justify-content-center">
+                    <div class="card-body col-md-8">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <tr>
+                                    <th scope="col">IZQ</th>
+                                    <th scope="col">ROT</th>
+                                    <th scope="col">DER</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Bicipital_izq" placeholder=""></td>
+                                    <td>Bicipital</td>
+                                    <td><input type="text" class="form-control" name="Bicipital_der" placeholder=""></td>
+
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Tricipital_izq" placeholder=""></td>
+                                    <td>Tricipital</td>
+                                    <td><input type="text" class="form-control" name="Tricipital_der" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Braquioradial_izq" placeholder=""></td>
+                                    <td>Braquioradial</td>
+                                    <td><input type="text" class="form-control" name="Braquioradial_der" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Estiloradial_izq" placeholder=""></td>
+                                    <td>Estiloradial</td>
+                                    <td><input type="text" class="form-control" name="Estiloradial_der" placeholder=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha11" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor11()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="form-group col-md-12">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <tr>
+                                    <th colspan="3" class="text-center">PRUEBAS Y EVALUACIONES COMPLEMENTARIAS</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Pruebas</th>
+                                    <th scope="col">Resultados y análisis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Pruebas_1" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Resultados y análisis_1" placeholder=""></td>
+
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Pruebas_2" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Resultados y análisis_2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Pruebas_3" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Resultados y análisis_3" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Pruebas_4" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Resultados y análisis_4" placeholder=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha12" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor12()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <label class="form-group col-md-12" for="Fuerzamuscular"><u>Elevación de la postura:</u></label>
+                <div class="form-group row col-md-12 mx-auto d-flex justify-content-center">
+                    <div class="card-body col-md-6">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <th colspan="3" class="text-center">Vista Frontal</th>
+                                <tr>
+                                    <th scope="col">Alineación corporal</th>
+                                    <th scope="col">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cabeza</td>
+                                    <td><input type="text" class="form-control" name="Cabeza_ob" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Hombros</td>
+                                    <td><input type="text" class="form-control" name="Hombros_ob" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Miembros Superiores</td>
+                                    <td><input type="text" class="form-control" name="Miembros Superiores_ob" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Tronco</td>
+                                    <td><input type="text" class="form-control" name="Tronco_ob" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Cadera</td>
+                                    <td><input type="text" class="form-control" name="Cadera_ob" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Rodillas</td>
+                                    <td><input type="text" class="form-control" name="Rodillas_ob" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Pies</td>
+                                    <td><input type="text" class="form-control" name="Pies_ob" placeholder=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="{{ url_for('static', filename='img/VistaFrontal.jpg') }}" class="img-fluid mt-5 mb-6"
+                            alt="VistaFrontal" style="width: 400px;">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha13" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor13()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="form-group row col-md-12 mx-auto d-flex justify-content-center">
+                    <div class="card-body col-md-6">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <th colspan="3" class="text-center">Vista Lateral</th>
+                                <tr>
+                                    <th scope="col">Alineación corporal</th>
+                                    <th scope="col">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cabeza</td>
+                                    <td><input type="text" class="form-control" name="Cabeza_ob1"placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Hombros</td>
+                                    <td><input type="text" class="form-control" name="Hombros_ob1" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Miembros Superiores</td>
+                                    <td><input type="text" class="form-control" name="Miembros Superiores_ob1" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Tronco</td>
+                                    <td><input type="text" class="form-control" name="Tronco_ob1" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Cadera</td>
+                                    <td><input type="text" class="form-control" name="Cadera_ob1" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Rodillas</td>
+                                    <td><input type="text" class="form-control" name="Rodillas_ob1" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Pies</td>
+                                    <td><input type="text" class="form-control" name="Pies_ob1" placeholder=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="{{ url_for('static', filename='img/VistaLateral.jpg') }}" class="img-fluid mt-5 mb-6"
+                            alt="VistaLateral" style="width: 400px;">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha14" class="card mb-3">
+    <div class="card mb-5">
+        <div class="card-header">
+            <button type="button" class="btn btn-danger btn-sm float-right" onclick="eliminarContenedor14()">Eliminar
+                sección</button>
+        </div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="form-group row col-md-12 mx-auto d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <th colspan="3" class="text-center">Vista Posterior</th>
+                                <tr>
+                                    <th scope="col">Alineación corporal</th>
+                                    <th scope="col">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cabeza</td>
+                                    <td><input type="text" class="form-control" name="Cabeza_ob2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Hombros</td>
+                                    <td><input type="text" class="form-control" name="Hombros_ob2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Miembros Superiores</td>
+                                    <td><input type="text" class="form-control" name="Miembros Superiores_ob2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Tronco</td>
+                                    <td><input type="text" class="form-control" name="Tronco_ob2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Cadera</td>
+                                    <td><input type="text" class="form-control" name="Cadera_ob2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Rodillas</td>
+                                    <td><input type="text" class="form-control" name="Rodillas_ob2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Pies</td>
+                                    <td><input type="text" class="form-control" name="Pies_ob2" placeholder=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="{{ url_for('static', filename='img/VistaPosterior.jpg') }}"
+                            class="img-fluid mt-5 mb-6" alt="VistaPosterior" style="width: 400px;">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-md-12 d-flex justify-content-end mt-4">
+    <button type="submit" class="btn btn-primary" style="margin-top: 20px;" onclick="guardarYMostrar()">Enviar</button>
+</div>
+{% endblock %}

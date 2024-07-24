@@ -1,0 +1,51 @@
+{% extends './base.html' %}
+
+{% block title%} Index {% endblock %}
+
+{% block body %}
+<section class="container11">
+    <p class="display-4 py-4 bold-text">Bienvenidos</p>
+    <div class="row11">
+        <div class="cols11">
+            <a href="{{ url_for('Miembro_superior') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formulario.png" alt="icon document">
+                    <p class="py-3">Miembro Superior</p>
+                </div>
+            </a>
+        </div>
+        <div class="cols11">
+            <a href="{{ url_for('Miembro_inferior') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formulario.png" alt="icon document">
+                    <p class="py-3">Miembro Inferior</p>
+                </div>
+            </a>
+        </div>
+        <div class="cols11">
+            <a href="{{ url_for('Cabeza_y_toráx') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formulario.png" alt="icon document">
+                    <p class="py-3">Cabeza y Torax</p>
+                </div>
+            </a>
+        </div>
+        <div class="cols11">
+            <a href="{{ url_for('Notas_de_seguimiento') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formariopersona.png" alt="icon document">
+                    <p class="py-3">Notas de seguimiento</p>
+                </div>
+            </a>
+        </div>
+        <div class="cols11">
+            <a href="{{ url_for('Plan_de_tratamiento') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formariopersona.png" alt="icon document">
+                    <p class="py-3">Plan de tratamiento</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
