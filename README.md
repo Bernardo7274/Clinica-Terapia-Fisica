@@ -11,5 +11,5 @@ Despues, por parte de la aplicacion, solo asegurence de tener instalados dos lib
 La de flask:
 pip install flask.
 
-y la de mysql para python.
+y la de mysql para python:
 pip install flask mysql-connector-python.
