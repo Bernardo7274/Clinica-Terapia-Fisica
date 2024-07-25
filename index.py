@@ -11,7 +11,7 @@ def create_connection():
             host='localhost',
             user='root',
             password='',
-            database='terapia_fisica'
+            database='terapia_fisica1'
         )
         if connection.is_connected():
             print("Conexión exitosa a la base de datos")
@@ -75,7 +75,7 @@ def guardar_datos():
         cursor.execute(query_ficha, values_ficha)
         connection.commit()
 
-        # Obtener el último ID insertado
+        # Obtener el último ID insertado en ficha_identificaciones
         last_id_query = "SELECT LAST_INSERT_ID()"
         cursor.execute(last_id_query)
         last_id = cursor.fetchone()[0]
@@ -199,118 +199,37 @@ def guardar_datos():
         for movimiento in data.get('datosMovimientos', []):
             if movimiento.get('derecha') and movimiento.get('izquierda'):  # Verifica si 'derecha' y 'izquierda' no están vacíos
                 values_fuerza_muscular = (
-                    last_id, movimiento['derecha'], movimiento['movimiento'], movimiento['izquierda']
+                    last_id, movimiento['derecha'], movimiento['movimiento'],
+                    movimiento['izquierda']
                 )
                 cursor.execute(query_fuerza_muscular, values_fuerza_muscular)
         connection.commit()
 
-        # Insertar datos en Goniometría
+        # Insertar datos en goniometria
         query_goniometria = """
         INSERT INTO goniometria (
-            id_ficha, rango_normal, movimiento, izquierdo, derecho
+            id_ficha, rango_normal, izquierdo, movimiento, derecho
         ) VALUES (%s, %s, %s, %s, %s)
         """
 
-        for goniometria in data.get('datosGoniometria', []):
-            if goniometria.get('izquierdoG') and goniometria.get('derechoG'):  # Verifica que 'rangoNormal' y 'movimiento' no estén vacíos
+        for movimiento_gonio in data.get('datosMovimientos', []):
+            if movimiento_gonio.get('izquierdo') and movimiento_gonio.get('derecho'):  # Verifica si 'izquierdo' y 'derecho' no están vacíos
                 values_goniometria = (
-                    last_id, goniometria['rangoNormal'], goniometria['movimientoG'],
-                    goniometria['izquierdoG'], goniometria['derechoG']
+                    last_id, movimiento_gonio['rango_normal'], movimiento_gonio['izquierdo'],
+                    movimiento_gonio['movimiento'], movimiento_gonio['derecho']
                 )
                 cursor.execute(query_goniometria, values_goniometria)
         connection.commit()
 
+        cursor.close()
+        return jsonify({'success': True})
 
-        # Insertar datos en Reflejos osteotendinosos
-        query_reflejososteotendinosos = """
-        INSERT INTO reflejososteotendinosos (
-            id_ficha, izq, rot, der
-        ) VALUES (%s, %s, %s, %s)
-        """
-
-        for reflejososteotendinosos in data.get('datosReflejososteotendinosos', []):
-            if reflejososteotendinosos.get('izq') and reflejososteotendinosos.get('der'):  # Verifica que 'rangoNormal' y 'movimiento' no estén vacíos
-                values_reflejososteotendinosos = (
-                    last_id, reflejososteotendinosos['izq'], reflejososteotendinosos['rot'],
-                    reflejososteotendinosos['der']
-                )
-                cursor.execute(query_reflejososteotendinosos, values_reflejososteotendinosos)
-        connection.commit()
-
-        # Insertar datos en PRUEBAS Y EVALUACIONES COMPLEMENTARIAS
-        query_pruebasevaluacionescomplementarias = """
-        INSERT INTO pruebasevaluacionescomplementarias (
-            id_ficha, pruebas, resultadosyanalisis
-        ) VALUES (%s, %s, %s)
-        """
-
-        for pruebasevaluacionescomplementarias in data.get('datosPrueba', []):
-            if pruebasevaluacionescomplementarias.get('pruebas') and pruebasevaluacionescomplementarias.get('evaluaciones'):  # Verifica que 'rangoNormal' y 'movimiento' no estén vacíos
-                values_pruebasevaluacionescomplementarias = (
-                    last_id, pruebasevaluacionescomplementarias['pruebas'], pruebasevaluacionescomplementarias['evaluaciones'],
-                )
-                cursor.execute(query_pruebasevaluacionescomplementarias, values_pruebasevaluacionescomplementarias)
-        connection.commit()
-
-        # Insertar datos en Vista frontal
-        query_vistafrontal = """
-        INSERT INTO vistafrontal (
-            id_ficha, alineacion_corporal, observaciones
-        ) VALUES (%s, %s, %s)
-        """
-
-        for vistafrontal in data.get('datosVistafrontal', []):
-            if vistafrontal.get('observaciones3'):  # Verifica que 'rangoNormal' y 'movimiento' no estén vacíos
-                values_vistafrontal = (
-                    last_id, vistafrontal['alineacion_corporal'], vistafrontal['observaciones3']
-                )
-                cursor.execute(query_vistafrontal, values_vistafrontal)
-        connection.commit()
-
-        # Insertar datos en Vista lateral
-        query_vistalateral = """
-        INSERT INTO vistalateral (
-            id_ficha, alineacion_corporal, observaciones
-        ) VALUES (%s, %s, %s)
-        """
-
-        for vistalateral in data.get('datosVistalateral', []):
-            if vistalateral.get('observaciones4'):  # Verifica que 'rangoNormal' y 'movimiento' no estén vacíos
-                values_vistalateral = (
-                    last_id, vistalateral['alineacion_corporal1'], vistalateral['observaciones4']
-                )
-                cursor.execute(query_vistalateral, values_vistalateral)
-        connection.commit()
-
-        # Insertar datos en Vista posterior
-        query_vistaposterior = """
-        INSERT INTO vistaposterior (
-            id_ficha, alineacion_corporal, observaciones
-        ) VALUES (%s, %s, %s)
-        """
-
-        for vistaposterior in data.get('datosVistaposterior', []):
-            if vistaposterior.get('observaciones5'):  # Verifica que 'rangoNormal' y 'movimiento' no estén vacíos
-                values_vistaposterior = (
-                    last_id, vistaposterior['alineacion_corporal2'], vistaposterior['observaciones5']
-                )
-                cursor.execute(query_vistaposterior, values_vistaposterior)
-        connection.commit()
-
-
-
-
-
-        return jsonify({'success': True, 'last_id': last_id})
-
-    except Error as e:
-        print(f"Error al insertar los datos: '{e}'")
-        return jsonify({'success': False})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)})
 
     finally:
-        if connection.is_connected():
-            cursor.close()
-            connection.close()
+        connection.close()
+
 
 # Fin seccion para insertar datos #            
 
