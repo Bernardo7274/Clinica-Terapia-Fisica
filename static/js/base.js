@@ -1,3 +1,25 @@
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.card-header').forEach(function (header) {
+        header.addEventListener('click', function () {
+            let icon = header.querySelector('i');
+            let isCollapsed = header.getAttribute('aria-expanded') === 'true';
+            icon.classList.toggle('fa-chevron-up', !isCollapsed);
+            icon.classList.toggle('fa-chevron-down', isCollapsed);
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.card-header').forEach(function (header) {
+        header.addEventListener('click', function () {
+            let icon = header.querySelector('i');
+            let isCollapsed = header.getAttribute('aria-expanded') === 'true';
+            icon.classList.toggle('fa-chevron-up', !isCollapsed);
+            icon.classList.toggle('fa-chevron-down', isCollapsed);
+        });
+    });
+});
+
 function eliminarContenedor1() {
     var contenedor = document.getElementById('contenedorFicha1');
     contenedor.parentNode.removeChild(contenedor);

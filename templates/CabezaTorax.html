@@ -1,0 +1,401 @@
+{% extends './base.html' %}
+
+{% block title%} Cabeza y cuello {% endblock %}
+
+{% block body %}
+<button onclick="history.back()" class="back-button">
+    <i class="fas fa-arrow-left"></i> Regresar
+</button>
+<h1 class="text-center bold-text">Cabeza y cuello</h1>
+<div id="contenedorFicha18" class="card mb-3">
+    <div class="card-header" data-toggle="collapse" data-target="#cabezaCuello" aria-expanded="true"
+        aria-controls="cabezaCuello">
+        Miembros Superiores
+        <i class="fas fa-chevron-up float-right"></i>
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor18()">Eliminar
+            sección</button>
+    </div>
+    <div id="cabezaCuello" class="collapse show">
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <p class="text-center col-md-12 mt-1"><strong>Cabeza y cuello</strong></p>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="observacionesCabezaCuello">Observaciones</label>
+                        <textarea class="form-control" name="observacionesCabezaCuello" id="observacionesCabezaCuello"
+                            style="height: 200px"
+                            placeholder="Describir: Vellosidad, coloración (escala de 'Von Luschan'), cicatrices, manchas, inflamación (tumoración, coloración, etc)"></textarea>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="palpacionsuperior">Palpación:</label>
+                        <textarea class="form-control" name="palpacionCabezaCuello" id="palpacionCabezaCuello"
+                            style="height: 200px"
+                            placeholder="Describir: Consistencia, movilidad, elasticidad de la piel; temperatura, puntos de tensión y/o de dolor, etc."></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="dolorSuperior"><u>Dolor</u></label>
+                    <div class="text-center">
+                        <img src="/static/img/medicion3.PNG" class="img-fluid mt-3 mb-5" alt="dolor">
+                    </div>
+                    <label for=""><u>Número de dolor:</u></label>
+                    <input type="number" class="form-control" id="dolorexplofisicaCabezaCuello" placeholder="">
+                    <label for="Descripción"><u>Dolor</u></label>
+                    <textarea class="form-control" name="dolorSuperiorCabezaCuello" id="dolorSuperiorCabezaCuello"
+                        style="height: 100px"
+                        placeholder="Descripción del dolor (intensidad, frecuencia, tipo, localización, antigüedad, etc): ">
+                    </textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha19" class="card mb-3">
+    <div class="card-header" data-toggle="collapse" data-target="#fuerzaMuscular" aria-expanded="true"
+        aria-controls="fuerzaMuscular">
+        Fuerza muscular
+        <i class="fas fa-chevron-up float-right"></i>
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor19()">Eliminar
+            sección</button>
+    </div>
+    <div id="fuerzaMuscular" class="collapse show">
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="form-group col-md-12">
+                    <label for="Fuerzamuscular"><u>Fuerza muscular</u></label>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <tr>
+                                    <th scope="col">Movimiento</th>
+                                    <th scope="col">Valores obtenidos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">Extensión de cabeza</td>
+                                    <td><input type="text" class="form-control"
+                                            name="Extensión de cabeza_valoresObtenidos" placeholder=""></td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Extensión de cuello</td>
+                                    <td><input type="text" class="form-control"
+                                            name="Extensión de cuello_valoresObtenidos" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Extensión conjunta (cabeza y cuello)</td>
+                                    <td><input type="text" class="form-control"
+                                            name="Extensión conjunta (cabeza y cuello)_valoresObtenidos" placeholder="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Flexión de cabeza</td>
+                                    <td><input type="text" class="form-control"
+                                            name="Flexión de cabeza_valoresObtenidos" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Flexión de cuello</td>
+                                    <td><input type="text" class="form-control"
+                                            name="Flexión de cuello_valoresObtenidos" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Flexión conjunta</td>
+                                    <td><input type="text" class="form-control" name="Flexión conjunta_valoresObtenidos"
+                                            placeholder=""></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-center">Flexión y rotación conjuntas</td>
+                                    <td><input type="text" class="form-control"
+                                            name="Flexión y rotación conjuntas_valoresObtenidos" placeholder=""></td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Rotación del cuello</td>
+                                    <td><input type="text" class="form-control"
+                                            name="Rotación del cuello_valoresObtenidos" placeholder=""></td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Observaciones:</td>
+                                    <td><input type="text" class="form-control" name="Observaciones_cabezaTorax"
+                                            placeholder=""></td>
+                                </tr>
+                                <label>* Escala de Daniels y Worthingham</label>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha20" class="card mb-3">
+    <div class="card-header" data-toggle="collapse" data-target="#columnaTóraxAbdomen" aria-expanded="true"
+        aria-controls="columnaTóraxAbdomen">
+        Columna, tórax y abdomen
+        <i class="fas fa-chevron-up float-right"></i>
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor20()">Eliminar
+            sección</button>
+    </div>
+    <div id="columnaTóraxAbdomen" class="collapse show">
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <p class="text-center col-md-12 mt-1"><strong>Columna, tórax y abdomen</strong></p>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="observacionesColumnaTóraxAbdomen">Observaciones</label>
+                        <textarea class="form-control" name="observacionesColumnaTóraxAbdomen"
+                            id="observacionesColumnaTóraxAbdomen" style="height: 200px"
+                            placeholder="Describir: Vellosidad, coloración (escala de 'Von Luschan'), cicatrices, manchas, inflamación (tumoración, coloración, etc)"></textarea>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="palpacionsuperior">Palpación:</label>
+                        <textarea class="form-control" name="palpacionColumnaTóraxAbdomen"
+                            id="palpacionColumnaTóraxAbdomen" style="height: 200px"
+                            placeholder="Describir: Consistencia, movilidad, elasticidad de la piel; temperatura, puntos de tensión y/o de dolor, etc."></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="dolorSuperior"><u>Dolor</u></label>
+                    <div class="text-center">
+                        <img src="/static/img/medicion3.PNG" class="img-fluid mt-3 mb-5" alt="dolor">
+                    </div>
+                    <label for=""><u>Número de dolor:</u></label>
+                    <input type="number" class="form-control" id="dolorexplofisicaColumnaTóraxAbdomen" placeholder="">
+                    <label for="Descripción"><u>Dolor</u></label>
+                    <textarea class="form-control" name="dolorSuperiorColumnaTóraxAbdomen"
+                        id="dolorSuperiorColumnaTóraxAbdomen" style="height: 100px"
+                        placeholder="Descripción del dolor (intensidad, frecuencia, tipo, localización, antigüedad, etc): ">
+                    </textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha21" class="card mb-3">
+    <div class="card-header" data-toggle="collapse" data-target="#fuerzaMuscular1" aria-expanded="true"
+        aria-controls="fuerzaMuscular1">
+        Fuerza muscular
+        <i class="fas fa-chevron-up float-right"></i>
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor21()">Eliminar
+            sección</button>
+    </div>
+    <div id="fuerzaMuscular1" class="collapse show">
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="form-group col-md-12">
+                    <label for="Fuerzamuscular1"><u>Fuerza muscular</u></label>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <tr>
+                                    <th scope="col">Movimiento</th>
+                                    <th scope="col">Valores obtenidos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">Extensión lumbar</td>
+                                    <td><input type="text" class="form-control" name="Extensión lumbar_valoresObtenidos"
+                                            placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Extensión torácica</td>
+                                    <td><input type="text" class="form-control"
+                                            name="Extensión torácica_valoresObtenidos" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Elevación pélvica</td>
+                                    <td><input type="text" class="form-control"
+                                            name="Elevación pélvica_valoresObtenidos" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Flexión</td>
+                                    <td><input type="text" class="form-control" name="Flexión_valoresObtenidos"
+                                            placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Rotación</td>
+                                    <td><input type="text" class="form-control" name="Rotación_valoresObtenidos"
+                                            placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Inspiración</td>
+                                    <td><input type="text" class="form-control" name="Inspiración_valoresObtenidos"
+                                            placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Espiración forzada indirecta</td>
+                                    <td><input type="text" class="form-control"
+                                            name="Espiración forzada indirecta_valoresObtenidos" placeholder=""></td>
+                                </tr>
+                                <label>* Escala de Daniels y Worthingham</label>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha22" class="card mb-3">
+    <div class="card-header" data-toggle="collapse" data-target="#goniometría1" aria-expanded="true"
+        aria-controls="goniometría1">
+        Goniometría
+        <i class="fas fa-chevron-up float-right"></i>
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor22()">Eliminar
+            sección</button>
+    </div>
+    <div id="goniometría1" class="collapse show">
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="form-group col-md-12">
+                    <label for="goniometria"><u>Goniometría</u></label>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <tr>
+                                    <th scope="col">Rangos Normales</th>
+                                    <th scope="col">Movimiento</th>
+                                    <th scope="col">Resultados</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Columna cervical</b></td>
+                                </tr>
+                                <tr>
+                                    <td>0-35°/45°</td>
+                                    <td>Flexión</td>
+                                    <td><input type="text" class="form-control" name="0-35°/45°_Flexión_resultados" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0-35°/45°</td>
+                                    <td>Extensión</td>
+                                    <td><input type="text" class="form-control" name="0-35°/45°_Extensión_resultados" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-45°</td>
+                                    <td>Inclinación lateral derecha</td>
+                                    <td><input type="text" class="form-control" name="0°-45°_Inclinación lateral derecha_resultados" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-45°</td>
+                                    <td>Inclinación lateral izquierda</td>
+                                    <td><input type="text" class="form-control" name="0°-45°_Inclinación lateral izquierda_resultados" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0-60°/80°</td>
+                                    <td>Rotación derecha</td>
+                                    <td><input type="text" class="form-control" name="0-60°/80°_Rotación derecha_resultados" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0-60°/80°</td>
+                                    <td>Rotación izquierda</td>
+                                    <td><input type="text" class="form-control" name="0-60°/80°_Rotación izquierda_resultados" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Columna dorsolumbar</b></td>
+                                </tr>
+                                <tr>
+                                    <td>*método de Schober</td>
+                                    <td>Flexión</td>
+                                    <td><input type="text" class="form-control" name="*método de Schober_Flexión_resultados" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0-30°</td>
+                                    <td>Extensión</td>
+                                    <td><input type="text" class="form-control" name="0-30°_Extensión_resultados" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0-30°/40°</td>
+                                    <td>Inclinación lateral derecha</td>
+                                    <td><input type="text" class="form-control" name="0-30°/40°_Inclinación lateral derecha_resultados" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0°-30°/40°</td>
+                                    <td>Inclinación lateral izquierda</td>
+                                    <td><input type="text" class="form-control" name="0°-30°/40°_Inclinación lateral izquierda_resultados" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0-30°</td>
+                                    <td>Rotación derecha</td>
+                                    <td><input type="text" class="form-control" name="0-30°_Rotación derecha_resultados" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>0-30°</td>
+                                    <td>Rotación izquierda</td>
+                                    <td><input type="text" class="form-control" name="0-30°_Rotación izquierda_resultados" placeholder=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha23" class="card mb-3">
+    <div class="card-header" data-toggle="collapse" data-target="#pruebasYevaluacionesComplementarias"
+        aria-expanded="true" aria-controls="pruebasYevaluacionesComplementarias">
+        Pruebas y evaluaciones complementarias
+        <i class="fas fa-chevron-up float-right"></i>
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor23()">Eliminar
+            sección</button>
+    </div>
+    <div id="pruebasYevaluacionesComplementarias" class="collapse show">
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="form-group col-md-12">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <tr>
+                                    <th colspan="3" class="text-center">PRUEBAS Y EVALUACIONES COMPLEMENTARIAS</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Pruebas</th>
+                                    <th scope="col">Resultados y análisis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Pruebas_1_CabezaTorax"
+                                            placeholder=""></td>
+                                    <td><input type="text" class="form-control"
+                                            name="Resultados y análisis_1_CabezaTorax" placeholder=""></td>
+
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Pruebas_2_CabezaTorax"
+                                            placeholder=""></td>
+                                    <td><input type="text" class="form-control"
+                                            name="Resultados y análisis_2_CabezaTorax" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Pruebas_3_CabezaTorax"
+                                            placeholder=""></td>
+                                    <td><input type="text" class="form-control"
+                                            name="Resultados y análisis_3_CabezaTorax" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Pruebas_4_CabezaTorax"
+                                            placeholder=""></td>
+                                    <td><input type="text" class="form-control"
+                                            name="Resultados y análisis_4_CabezaTorax" placeholder=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

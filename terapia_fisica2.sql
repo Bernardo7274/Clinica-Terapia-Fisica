@@ -1,16 +1,16 @@
-CREATE TABLE `clasificaciones` (
+CREATE TABLE `partes_cuerpo` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `Nombre` varchar(225) DEFAULT NULL
+  `Nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-INSERT INTO `clasificaciones` (`id`, `Nombre`) VALUES
-(1, 'Miembro Superior'),
-(2, 'Miembro Inferior'),
-(3, 'Cabeza y tórax');
+INSERT INTO `partes_cuerpo` (`id`, `Nombre`) VALUES
+(1, 'Miembros Superiores'),
+(2, 'Miembros Inferiores'),
+(3, 'Cabeza y cuello'),
+(4, 'Columna, toráx y abdomen');
 
-
+-- Tabla ficha_identificaciones
 CREATE TABLE `ficha_identificaciones` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `id_clasificacion` int(11) DEFAULT NULL,
   `fecha_elaboracion` date DEFAULT NULL,
   `nombre_paciente` varchar(255) DEFAULT NULL,
   `genero` varchar(25) DEFAULT NULL,
@@ -27,15 +27,11 @@ CREATE TABLE `ficha_identificaciones` (
   `contacto_emergencia_telefono` varchar(20) DEFAULT NULL,
   `diagnostico_medico` text DEFAULT NULL,
   `elaboro_historial_clinico` varchar(255) DEFAULT NULL,
-  `motivo_consulta` text DEFAULT NULL,
-  CONSTRAINT `fk_id_clasificacion`
-    FOREIGN KEY (`id_clasificacion`)
-    REFERENCES `clasificaciones` (`id`)
+  `motivo_consulta` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
+-- Tabla antecedentespersonalesnopatologicos
 CREATE TABLE `antecedentespersonalesnopatologicos` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `id_ficha` int(11) DEFAULT NULL,
   `PropiaRenta` varchar(255) DEFAULT NULL,
   `Ventilacion` varchar(255) DEFAULT NULL,
@@ -55,14 +51,12 @@ CREATE TABLE `antecedentespersonalesnopatologicos` (
   `Deporte` varchar(255) DEFAULT NULL,
   `Ocio` varchar(255) DEFAULT NULL,
   `Ocupacion` varchar(255) DEFAULT NULL,
-  CONSTRAINT `fk_id_ficha`
     FOREIGN KEY (`id_ficha`)
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
+-- Tabla antecedentesheredofamiliares
 CREATE TABLE `antecedentesheredofamiliares` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `id_ficha` int(11) DEFAULT NULL,
   `enfermedad` varchar(50) DEFAULT NULL,
   `si` tinyint(1) DEFAULT 0,
@@ -72,14 +66,12 @@ CREATE TABLE `antecedentesheredofamiliares` (
   `muerto` tinyint(1) DEFAULT 0,
   `otro` text DEFAULT NULL,
   `observaciones` text DEFAULT NULL,
-  CONSTRAINT `fk_id_ficha_ahf`
     FOREIGN KEY (`id_ficha`)
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
+-- Tabla antecedentes_patologicos
 CREATE TABLE `antecedentes_patologicos` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `id_ficha` int(11) DEFAULT NULL,
   `patologia` varchar(255) DEFAULT NULL,
   `si` tinyint(1) DEFAULT NULL,
@@ -88,14 +80,12 @@ CREATE TABLE `antecedentes_patologicos` (
   `secuelas_complicaciones` text DEFAULT NULL,
   `inmunizaciones` text DEFAULT NULL,
   `observaciones` text DEFAULT NULL,
-  CONSTRAINT `fk_id_ficha_ap`
     FOREIGN KEY (`id_ficha`)
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
+-- Tabla antecedentes_ginecobstetricos
 CREATE TABLE `antecedentes_ginecobstetricos` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `id_ficha` int(11) DEFAULT NULL,
   `menarquia` varchar(255) DEFAULT NULL,
   `fecha_ultima_menstruacion` date DEFAULT NULL,
@@ -106,24 +96,20 @@ CREATE TABLE `antecedentes_ginecobstetricos` (
   `numero_partos` int(11) DEFAULT NULL,
   `numero_cesareas` int(11) DEFAULT NULL,
   `observaciones` text DEFAULT NULL,
-  CONSTRAINT `fk_id_ficha_ag`
     FOREIGN KEY (`id_ficha`)
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
+-- Tabla antecedentes_padecimientoactual
 CREATE TABLE `antecedentes_padecimientoactual` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `id_ficha` int(11) NOT NULL,
   `descripcion` text DEFAULT NULL,
-  CONSTRAINT `fk_id_ficha_pa`
     FOREIGN KEY (`id_ficha`)
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
+-- Tabla exploracion
 CREATE TABLE `exploracion` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `id_ficha` int(11) NOT NULL,
   `habitus_exterior` varchar(255) DEFAULT NULL,
   `peso` decimal(5,2) DEFAULT NULL,
@@ -136,40 +122,25 @@ CREATE TABLE `exploracion` (
   `saturacion_oxigeno` decimal(4,2) DEFAULT NULL,
   `observaciones` text DEFAULT NULL,
   `resultados_previos_actuales` text DEFAULT NULL,
-  CONSTRAINT `fk_id_ficha_expl`
     FOREIGN KEY (`id_ficha`)
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
-CREATE TABLE `partes_cuerpo` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `Nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-INSERT INTO `partes_cuerpo` (`id`, `Nombre`) VALUES
-(1, 'Miembros Superiores'),
-(2, 'Miembros Inferiores'),
-(3, 'Cabeza y cuello'),
-(4, 'Columna, toráx y abdomen');
-
-
-CREATE TABLE `des_partes_cuerpo` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+-- Tabla partes_cuerpo_miembro_superior
+CREATE TABLE `partes_cuerpo_miembro_superior` (
   `id_ficha` int(11) DEFAULT NULL,
   `id_partes` int(11) DEFAULT NULL,
   `observacion` varchar(50) DEFAULT NULL,
   `palpacion` varchar(50) DEFAULT NULL,
-  `exploracion` varchar(50) DEFAULT NULL,
+  `descripcion` varchar(50) DEFAULT NULL,
   `dolor` int(11) DEFAULT NULL,
   FOREIGN KEY (`id_partes`) REFERENCES `partes_cuerpo` (`id`),
-  CONSTRAINT `fk_id_ficha_des_partes`
     FOREIGN KEY (`id_ficha`)
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
-CREATE TABLE `fuerza_muscular` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+-- Tabla fuerza_muscular_miembro_superior
+CREATE TABLE `fuerza_muscular_miembro_superior` (
   `id_ficha` int(11) DEFAULT NULL,
   `derecha` varchar(255) DEFAULT NULL,
   `movimiento` varchar(255) DEFAULT NULL,
@@ -178,9 +149,8 @@ CREATE TABLE `fuerza_muscular` (
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
-CREATE TABLE `goniometria` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+-- Tabla goniometria_miembro_superior
+CREATE TABLE `goniometria_miembro_superior` (
   `id_ficha` int(11) DEFAULT NULL,
   `rango_normal` varchar(50) DEFAULT NULL,
   `izquierdo` varchar(50) DEFAULT NULL,
@@ -190,9 +160,8 @@ CREATE TABLE `goniometria` (
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
-CREATE TABLE `reflejososteotendinosos` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+-- Tabla reflejososteotendinosos_miembro_superior
+CREATE TABLE `reflejososteotendinosos_miembro_superior` (
   `id_ficha` int(11) DEFAULT NULL,
   `izq` varchar(255) DEFAULT NULL,
   `rot` varchar(255) DEFAULT NULL,
@@ -201,9 +170,8 @@ CREATE TABLE `reflejososteotendinosos` (
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
-CREATE TABLE `pruebasevaluacionescomplementarias` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+-- Tabla pruebasevaluacionescomplementarias_miembro_superior
+CREATE TABLE `pruebasevaluacionescomplementarias_miembro_superior` (
   `id_ficha` int(11) DEFAULT NULL,
   `pruebas` varchar(255) DEFAULT NULL,
   `resultadosyanalisis` text DEFAULT NULL,
@@ -211,76 +179,104 @@ CREATE TABLE `pruebasevaluacionescomplementarias` (
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
-CREATE TABLE `vistafrontal` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `id_ficha` int(11) DEFAULT NULL,
-  `alineacion_corporal` varchar(50) DEFAULT NULL,
-  `observaciones` text DEFAULT NULL,
-   FOREIGN KEY (`id_ficha`)
-    REFERENCES `ficha_identificaciones` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
-
-CREATE TABLE `vistalateral` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `id_ficha` int(11) DEFAULT NULL,
-  `alineacion_corporal` varchar(50) DEFAULT NULL,
-  `observaciones` text DEFAULT NULL,
-   FOREIGN KEY (`id_ficha`)
-    REFERENCES `ficha_identificaciones` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
-
-CREATE TABLE `vistaposterior` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `id_ficha` int(11) DEFAULT NULL,
-  `alineacion_corporal` varchar(50) DEFAULT NULL,
-  `observaciones` text DEFAULT NULL,
-   FOREIGN KEY (`id_ficha`)
-    REFERENCES `ficha_identificaciones` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
-
-CREATE TABLE `ciclo_marcha` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `id_ficha` int(11) DEFAULT NULL,
-  `ciclo` varchar(50) DEFAULT NULL,
-  `pierna_izquierda` varchar(50) DEFAULT NULL,
-  `pierna_derecha` varchar(50) DEFAULT NULL,
-  FOREIGN KEY (`id_ficha`)
-    REFERENCES `ficha_identificaciones` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
-
-CREATE TABLE `fuerzamuscular` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `id_ficha` int(11) DEFAULT NULL,
-  `movimiento` varchar(255) DEFAULT NULL,
-  `valores_obtenidos` varchar(255) DEFAULT NULL,
-  `observaciones` TEXT,
-  FOREIGN KEY (`id_ficha`)
-    REFERENCES `ficha_identificaciones` (`id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
-
-CREATE TABLE `ob_partes_cuerpo` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+-- Tabla partes_cuerpo_miembro_inferior
+CREATE TABLE `partes_cuerpo_miembro_inferior` (
   `id_ficha` int(11) DEFAULT NULL,
   `id_partes` int(11) DEFAULT NULL,
   `observacion` varchar(50) DEFAULT NULL,
   `palpacion` varchar(50) DEFAULT NULL,
-  `exploracion` varchar(50) DEFAULT NULL,
+  `descripcion` varchar(50) DEFAULT NULL,
   `dolor` int(11) DEFAULT NULL,
   FOREIGN KEY (`id_partes`) REFERENCES `partes_cuerpo` (`id`),
-  CONSTRAINT `fk_id_ficha_ob_partes`
     FOREIGN KEY (`id_ficha`)
     REFERENCES `ficha_identificaciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+-- Tabla fuerza_muscular_miembro_inferior
+CREATE TABLE `fuerza_muscular_miembro_inferior` (
+  `id_ficha` int(11) DEFAULT NULL,
+  `derecha` varchar(255) DEFAULT NULL,
+  `movimiento` varchar(255) DEFAULT NULL,
+  `izquierda` varchar(255) DEFAULT NULL,
+  FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-CREATE TABLE `fuerza_muscularll` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+-- Tabla goniometria_miembro_inferior
+CREATE TABLE `goniometria_miembro_inferior` (
+  `id_ficha` int(11) DEFAULT NULL,
+  `rango_normal` varchar(50) DEFAULT NULL,
+  `izquierdo` varchar(50) DEFAULT NULL,
+  `movimiento` varchar(50) DEFAULT NULL,
+  `derecho` varchar(50) DEFAULT NULL,
+  FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Tabla reflejososteotendinosos_miembro_inferior
+CREATE TABLE `reflejososteotendinosos_miembro_inferior` (
+  `id_ficha` int(11) DEFAULT NULL,
+  `izq` varchar(255) DEFAULT NULL,
+  `rot` varchar(255) DEFAULT NULL,
+  `der` varchar(255) DEFAULT NULL,
+  FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Tabla pruebasevaluacionescomplementarias_miembro_inferior
+CREATE TABLE `pruebasevaluacionescomplementarias_miembro_inferior` (
+  `id_ficha` int(11) DEFAULT NULL,
+  `pruebas` varchar(255) DEFAULT NULL,
+  `resultadosyanalisis` text DEFAULT NULL,
+  FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Tabla ciclo_marcha_miembro_inferior
+CREATE TABLE ciclo_marcha_miembro_inferior (
+    id_ficha INT DEFAULT NULL,
+    fase_apoyo_completo VARCHAR(255) DEFAULT NULL,
+    contacto_talon_izquierdo VARCHAR(255) DEFAULT NULL,
+    contacto_talon_derecho VARCHAR(255) DEFAULT NULL,
+    apoyo_plantar_izquierdo VARCHAR(255) DEFAULT NULL,
+    apoyo_plantar_derecho VARCHAR(255) DEFAULT NULL,
+    apoyo_medio_izquierdo VARCHAR(255) DEFAULT NULL,
+    apoyo_medio_derecho VARCHAR(255) DEFAULT NULL,
+    fase_oscilacion_completo VARCHAR(255) DEFAULT NULL,
+    balanceo_inicial_izquierdo VARCHAR(255) DEFAULT NULL,
+    balanceo_inicial_derecho VARCHAR(255) DEFAULT NULL,
+    balanceo_medio_izquierdo VARCHAR(255) DEFAULT NULL,
+    balanceo_medio_derecho VARCHAR(255) DEFAULT NULL,
+    balanceo_terminal_izquierdo VARCHAR(255) DEFAULT NULL,
+    balanceo_terminal_derecho VARCHAR(255) DEFAULT NULL,
+    rotacion_pelvica_completo VARCHAR(255) DEFAULT NULL,
+    inclinacion_pelvica_completo VARCHAR(255) DEFAULT NULL,
+    flexion_rodilla_izquierdo VARCHAR(255) DEFAULT NULL,
+    flexion_rodilla_derecho VARCHAR(255) DEFAULT NULL,
+    movimientos_coordinados_rodilla_tobillo_izquierdo VARCHAR(255) DEFAULT NULL,
+    movimientos_coordinados_rodilla_tobillo_derecho VARCHAR(255) DEFAULT NULL,
+    movimiento_centro_gravedad_completo VARCHAR(255) DEFAULT NULL,
+    cadencia_completo VARCHAR(255) DEFAULT NULL,
+    balanceo_ms_completo VARCHAR(255) DEFAULT NULL,
+    FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Tabla partes_cuerpo_cabeza_y_torax
+CREATE TABLE `partes_cuerpo_cabeza_y_torax` (
+  `id_ficha` int(11) DEFAULT NULL,
+  `id_partes` int(11) DEFAULT NULL,
+  `observacion` varchar(50) DEFAULT NULL,
+  `palpacion` varchar(50) DEFAULT NULL,
+  `descripcion` varchar(50) DEFAULT NULL,
+  `dolor` int(11) DEFAULT NULL,
+  FOREIGN KEY (`id_partes`) REFERENCES `partes_cuerpo` (`id`),
+    FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Tabla fuerza_muscular_cabeza_y_torax
+CREATE TABLE `fuerza_muscular_cabeza_y_torax` (
   `id_ficha` int(11) DEFAULT NULL,
   `movimiento` varchar(255) DEFAULT NULL,
   `valores_obtenidos` varchar(255) DEFAULT NULL,
@@ -289,9 +285,31 @@ CREATE TABLE `fuerza_muscularll` (
     REFERENCES `ficha_identificaciones` (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+-- Tabla partes_cuerpo_cabeza_y_torax1
+CREATE TABLE `partes_cuerpo_cabeza_y_torax1` (
+  `id_ficha` int(11) DEFAULT NULL,
+  `id_partes` int(11) DEFAULT NULL,
+  `observacion` varchar(50) DEFAULT NULL,
+  `palpacion` varchar(50) DEFAULT NULL,
+  `descripcion` varchar(50) DEFAULT NULL,
+  `dolor` int(11) DEFAULT NULL,
+  FOREIGN KEY (`id_partes`) REFERENCES `partes_cuerpo` (`id`),
+    FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-CREATE TABLE `goniometriall` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+-- Tabla fuerza_muscular_cabeza_y_torax1
+CREATE TABLE `fuerza_muscular_cabeza_y_torax1` (
+  `id_ficha` int(11) DEFAULT NULL,
+  `movimiento` varchar(255) DEFAULT NULL,
+  `valores_obtenidos` varchar(255) DEFAULT NULL,
+  `observaciones` TEXT,
+  FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Tabla goniometria_cabeza_y_torax
+CREATE TABLE `goniometria_cabeza_y_torax` (
   `id_ficha` int(11) DEFAULT NULL,
   `rangos_normales` varchar(255) DEFAULT NULL,
   `movimientos` varchar(255) DEFAULT NULL,
@@ -300,25 +318,38 @@ CREATE TABLE `goniometriall` (
     REFERENCES `ficha_identificaciones` (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+-- Tabla pruebasevaluacionescomplementarias_cabeza_y_torax
+CREATE TABLE `pruebasevaluacionescomplementarias_cabeza_y_torax` (
+  `id_ficha` int(11) DEFAULT NULL,
+  `pruebas` varchar(255) DEFAULT NULL,
+  `resultadosyanalisis` text DEFAULT NULL,
+  FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-CREATE TABLE `plan_tratamiento` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `objetivo` varchar(255) DEFAULT NULL,
-  `modalidad_terapeutica` varchar(255) DEFAULT NULL,
-  `descripcion` TEXT,
-  `dosis` VARCHAR(255) NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+-- Tabla vistafrontal
+CREATE TABLE `vistafrontal` (
+  `id_ficha` int(11) DEFAULT NULL,
+  `alineacion_corporal` varchar(50) DEFAULT NULL,
+  `observaciones` text DEFAULT NULL,
+   FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+-- Tabla vistalateral
+CREATE TABLE `vistalateral` (
+  `id_ficha` int(11) DEFAULT NULL,
+  `alineacion_corporal` varchar(50) DEFAULT NULL,
+  `observaciones` text DEFAULT NULL,
+   FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-CREATE TABLE `notas_seguimiento` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `nombre` varchar(255) DEFAULT NULL,
-  `diagnostico` varchar(255) DEFAULT NULL,
-  `folio` varchar(10) DEFAULT NULL,
-  `fecha` DATE,
-  `numero_sesion` int(11),
-  `notas` TEXT,
-  `sugerencias_observaciones` TEXT,
-  `nombre_tratante` varchar(255) DEFAULT NULL,
-  `firma_encriptada` VARCHAR(64) DEFAULT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+-- Tabla vistaposterior
+CREATE TABLE `vistaposterior` (
+  `id_ficha` int(11) DEFAULT NULL,
+  `alineacion_corporal` varchar(50) DEFAULT NULL,
+  `observaciones` text DEFAULT NULL,
+   FOREIGN KEY (`id_ficha`)
+    REFERENCES `ficha_identificaciones` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;

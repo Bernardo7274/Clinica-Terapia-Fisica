@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -23,19 +24,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link bold-text" href="{{ url_for('Miembro_superior') }}">Miembro Superior</a>
+                    <a class="nav-link bold-text" href="{{ url_for('NuevoRegistro') }}">Miembro Superior</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link bold-text" href="{{ url_for('Miembro_inferior') }}">Miembro Inferior</a>
+                    <a class="nav-link bold-text" href="{{ url_for('NuevoRegistro') }}">Miembro Inferior</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link bold-text" href="{{ url_for('Cabeza_y_toráx') }}">Cabeza y toráx</a>
+                    <a class="nav-link bold-text" href="{{ url_for('NuevoRegistro') }}">Cabeza y toráx</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link bold-text" href="{{ url_for('Notas_de_seguimiento') }}">Notas de seguimiento</a>
+                    <a class="nav-link bold-text" href="{{ url_for('NuevoRegistro') }}">Notas de seguimiento</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link bold-text" href="{{ url_for('Plan_de_tratamiento') }}">Plan de tratamiento</a>
+                    <a class="nav-link bold-text" href="{{ url_for('NuevoRegistro') }}">Plan de tratamiento</a>
                 </li>
             </ul>
         </div>
@@ -47,6 +48,8 @@
 
         {% endblock %}
     </div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
         </script>
@@ -57,10 +60,9 @@
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
         </script>
     <script src="{{ url_for('static', filename='js/base.js') }}"></script>
-    {% if current_page == 'Notas_de_seguimiento' %}
-    <script src="{{ url_for('static', filename='js/agregarSeccion.js') }}"></script>
+    {% if current_page == 'NuevoRegistro' %}
+    <script src="{{ url_for('static', filename='js/envio.js') }}"></script>
     {% endif %}
-    <script src="{{ url_for('static', filename='js/envio_superior.js') }}"></script>
 </body>
 
 </html>

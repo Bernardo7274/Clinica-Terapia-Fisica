@@ -1,0 +1,28 @@
+{% extends './base.html' %}
+
+{% block title%} Consultar Registro {% endblock %}
+
+{% block body %}
+<div id="consultaRegistro">
+    <div class="card-body">
+        <form class="row g-3 needs-validation" novalidate id="fichaForm">
+            <div class="form-group col-md-3">
+                <label for="clasificacion">Clasificación:</label>
+                <select class="form-control" id="clasificacion" name="clasificacion">
+                    {% for clasificacion in clasificaciones %}
+                    <option value="{{ clasificacion[0] }}">{{ clasificacion[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="folio">Folio del paciente:</label>
+                <select class="form-control" id="folio" name="folio">
+                    {% for folio in folios %}
+                    <option value="{{ folio[0] }}">{{ folio[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

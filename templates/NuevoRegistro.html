@@ -1,0 +1,69 @@
+{% extends './base.html' %}
+
+{% block title%} Nuevo Registro {% endblock %}
+
+{% block body %}
+<section class="container11">
+    <p class="display-4 py-4 bold-text">Formularios</p>
+    <div class="row11">
+        <div class="cols11">
+            <a href="{{ url_for('Ficha') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formulario.png" alt="icon document">
+                    <p class="py-3">Ficha</p>
+                </div>
+            </a>
+        </div>
+        <div class="cols11">
+            <a href="{{ url_for('MiembroSuperior') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formulario.png" alt="icon document">
+                    <p class="py-3">Miembro Superior</p>
+                </div>
+            </a>
+        </div>
+        <div class="cols11">
+            <a href="{{ url_for('MiembroInferior') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formulario.png" alt="icon document">
+                    <p class="py-3">Miembro Inferior</p>
+                </div>
+            </a>
+        </div>
+        <div class="cols11">
+            <a href="{{ url_for('CabezaTorax') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formariopersona.png" alt="icon document">
+                    <p class="py-3">Cabeza y toráx</p>
+                </div>
+            </a>
+        </div>
+        <div class="cols11">
+            <a href="{{ url_for('EvaluacionDeLaPostura') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formariopersona.png" alt="icon document">
+                    <p class="py-3">Evaluación de la postura</p>
+                </div>
+            </a>
+        </div>
+        <div class="cols11">
+            <a href="{{ url_for('NuevoRegistro') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formariopersona.png" alt="icon document">
+                    <p class="py-3">Notas de seguimiento</p>
+                </div>
+            </a>
+        </div>
+        <div class="cols11">
+            <a href="{{ url_for('NuevoRegistro') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formariopersona.png" alt="icon document">
+                    <p class="py-3">Plan de tratamiento</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <button type="button" id="enviarDatos" class="btn btn-primary">Enviar registro</button>
+    <button type="button" id="mostrarDatos" class="btn btn-primary">Mostrar</button>
+</section>
+{% endblock %}

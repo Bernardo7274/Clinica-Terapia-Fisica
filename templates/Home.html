@@ -1,0 +1,27 @@
+{% extends './base.html' %}
+
+{% block title%} Home {% endblock %}
+
+{% block body %}
+<section class="container11">
+    <p class="display-4 py-4 bold-text">Bienvenido</p>
+    <div class="row11">
+        <div class="cols11">
+            <a href="{{ url_for('NuevoRegistro') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formulario.png" alt="icon document">
+                    <p class="py-3">Nuevo registro</p>
+                </div>
+            </a>
+        </div>
+        <div class="cols11">
+            <a href="{{ url_for('ConsultaRegistro') }}" class="text-decoration-none">
+                <div class="container_alumno_cards11">
+                    <img src="/static/img/formulario.png" alt="icon document">
+                    <p class="py-3">Consultar registro</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

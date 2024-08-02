@@ -6,6 +6,10 @@
   font-weight: bold;
 }
 
+.thin-text {
+  font-weight: 300;
+}
+
 .container11 {
   margin-top: 0px;
   text-align: center;
@@ -43,4 +47,26 @@
 
 .container_alumno_cards11:hover {
   transform: scale(1.05);
+}
+
+.back-button {
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.back-button i {
+  margin-right: 5px;
+}
+
+input:disabled, textarea:disabled, select:disabled {
+  background-color: #e9ecef; /* Color de fondo para campos deshabilitados */
+  cursor: not-allowed; /* Cambia el cursor para indicar que están deshabilitados */
 }

@@ -1,0 +1,200 @@
+{% extends './base.html' %}
+
+{% block title%} Evaluación de la postura {% endblock %}
+
+{% block body %}
+<button onclick="history.back()" class="back-button">
+    <i class="fas fa-arrow-left"></i> Regresar
+</button>
+<h1 class="text-center bold-text">Evaluación de la postura</h1>
+<div id="contenedorFicha12" class="card mb-3">
+    <div class="card-header" data-toggle="collapse" data-target="#vistaFrontal" aria-expanded="true"
+        aria-controls="vistaFrontal">
+        Vista Frontal
+        <i class="fas fa-chevron-up float-right"></i>
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor12()">Eliminar
+            sección</button>
+    </div>
+    <div id="vistaFrontal" class="collapse show">
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <label class="form-group col-md-12" for="Evaluacióndelapostura"><u>Evaluación de la postura:</u></label>
+                <div class="form-group row col-md-12 mx-auto d-flex justify-content-center">
+                    <div class="card-body col-md-6">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <th colspan="3" class="text-center">Vista Frontal</th>
+                                <tr>
+                                    <th scope="col">Alineación corporal</th>
+                                    <th scope="col">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cabeza</td>
+                                    <td><input type="text" class="form-control" name="Cabeza_ob" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Hombros</td>
+                                    <td><input type="text" class="form-control" name="Hombros_ob" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Miembros Superiores</td>
+                                    <td><input type="text" class="form-control" name="Miembros Superiores_ob"
+                                            placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Tronco</td>
+                                    <td><input type="text" class="form-control" name="Tronco_ob" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Cadera</td>
+                                    <td><input type="text" class="form-control" name="Cadera_ob" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Rodillas</td>
+                                    <td><input type="text" class="form-control" name="Rodillas_ob" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Pies</td>
+                                    <td><input type="text" class="form-control" name="Pies_ob" placeholder=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="{{ url_for('static', filename='img/VistaFrontal.jpg') }}" class="img-fluid mt-5 mb-6"
+                            alt="VistaFrontal" style="width: 400px;">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha13" class="card mb-3">
+    <div class="card-header" data-toggle="collapse" data-target="#vistaLateral" aria-expanded="true"
+        aria-controls="vistaLateral">
+        Vista Lateral
+        <i class="fas fa-chevron-up float-right"></i>
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor13()">Eliminar
+            sección</button>
+    </div>
+    <div id="vistaLateral" class="collapse show">
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="form-group row col-md-12 mx-auto d-flex justify-content-center">
+                    <div class="card-body col-md-6">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <th colspan="3" class="text-center">Vista Lateral</th>
+                                <tr>
+                                    <th scope="col">Alineación corporal</th>
+                                    <th scope="col">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cabeza</td>
+                                    <td><input type="text" class="form-control" name="Cabeza_ob1" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Hombros</td>
+                                    <td><input type="text" class="form-control" name="Hombros_ob1" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Miembros Superiores</td>
+                                    <td><input type="text" class="form-control" name="Miembros Superiores_ob1"
+                                            placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Tronco</td>
+                                    <td><input type="text" class="form-control" name="Tronco_ob1" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Cadera</td>
+                                    <td><input type="text" class="form-control" name="Cadera_ob1" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Rodillas</td>
+                                    <td><input type="text" class="form-control" name="Rodillas_ob1" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Pies</td>
+                                    <td><input type="text" class="form-control" name="Pies_ob1" placeholder=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="{{ url_for('static', filename='img/VistaLateral.jpg') }}" class="img-fluid mt-5 mb-6"
+                            alt="VistaLateral" style="width: 400px;">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="contenedorFicha14" class="card mb-3">
+    <div class="card-header" data-toggle="collapse" data-target="#vistaPosterior" aria-expanded="true"
+        aria-controls="vistaPosterior">
+        Vista Posterior
+        <i class="fas fa-chevron-up float-right"></i>
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor14()">Eliminar
+            sección</button>
+    </div>
+    <div id="vistaPosterior" class="collapse show">
+        <div class="card-body">
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="form-group row col-md-12 mx-auto d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <thead class="col">
+                                <th colspan="3" class="text-center">Vista Posterior</th>
+                                <tr>
+                                    <th scope="col">Alineación corporal</th>
+                                    <th scope="col">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cabeza</td>
+                                    <td><input type="text" class="form-control" name="Cabeza_ob2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Hombros</td>
+                                    <td><input type="text" class="form-control" name="Hombros_ob2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Miembros Superiores</td>
+                                    <td><input type="text" class="form-control" name="Miembros Superiores_ob2"
+                                            placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Tronco</td>
+                                    <td><input type="text" class="form-control" name="Tronco_ob2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Cadera</td>
+                                    <td><input type="text" class="form-control" name="Cadera_ob2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Rodillas</td>
+                                    <td><input type="text" class="form-control" name="Rodillas_ob2" placeholder=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Pies</td>
+                                    <td><input type="text" class="form-control" name="Pies_ob2" placeholder=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="{{ url_for('static', filename='img/VistaPosterior.jpg') }}"
+                            class="img-fluid mt-5 mb-6" alt="VistaPosterior" style="width: 400px;">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
