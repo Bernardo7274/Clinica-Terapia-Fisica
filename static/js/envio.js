@@ -89,18 +89,70 @@ function guardarDatosEnTiempoReal() {
         observaciones2: obtenerValor('observacionesexplofisica'),
         resultados_previos_actuales: obtenerValor('resultadospreviosyactuales')
     };
-
     // Guardar datos en localStorage
     localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario));
+    // Mostrar datos en la consola
+    console.log(datosFormulario);
+}
 
-    // // Mostrar datos en la consola
-    // console.log(datosFormulario);
+function guardarMiembroSuperior(){
+    console.log("Entre aqui")
+    const datosFormularioMiembroSup = {
+        observacion: obtenerValor('observacionesMiembrosSuperiores'),
+        palpacion: obtenerValor('palpacionMiembrosSuperiores'),
+        descripcion: obtenerValor('dolorSuperiorMiembrosSuperiores'),
+        dolor: obtenerValorEntero('dolorexplofisicaMiembrosSuperiores'),
+        // Fuerza Muscular
+        datosMovimientos: ['Abducción y rotación superior de la escápula', 'Elevación de la escápula', 'Aducción de la escápula', 'Aducción y descenso escapular', 'Aducción y rotación inferior de la escápula', 'Flexión del hombro', 'Extensión de hombro', 'Abducción del hombro', 'Abducción horizontal del hombro', 'Aducción horizontal del hombro', 'Rotación externa del hombro','Rotación interna del hombro', 'Flexión de codo','Extensión de codo','Supinación del antebrazo','Pronación del antebrazo','Flexión de la muñeca','Extensión de la muñeca'].map(movimiento => ({
+            izq: document.querySelector(`input[name="${movimiento.replace(/ /g, '_')}_izquierdo"]`)?.value || '',
+            movimiento,
+            der: document.querySelector(`input[name="${movimiento.replace(/ /g, '_')}_derecho"]`)?.value || ''
+        })),
+        // Goniometria
+        datosGoniometria: [
+            'Flexión de hombro', 'Extensión de hombro', 'Abducción de hombro', 'Aducción de hombro', 'Rotación externa de hombro', 'Rotación interna de hombro', 'Flexión de codo', 'Extensión de codo', 'Supinación del antebrazo', 'Pronación del antebrazo', 'Desviación radial de muñeca', 'Desviación cubital de la muñeca', 'Flexión de muñeca', 'Extensión de muñeca'
+        ].map(movimiento => ({
+            rangoNormal: document.querySelector(`td[data-movimiento="${movimiento.replace(/ /g, '_')}_Gonio"]`)?.textContent.trim() || '',
+            izq: document.querySelector(`input[name="${movimiento.replace(/ /g, '_')}_izquierdoGonio"]`)?.value || '',
+            movimiento,
+            der: document.querySelector(`input[name="${movimiento.replace(/ /g, '_')}_derechoGonio"]`)?.value || ''
+        })),
+        // Reflejos osteotendinosos
+        datosOsteotendinosos: [
+            'Bicipital', 'Tricipital', 'Braquioradial', 'Estiloradial'
+        ].map(rot => ({
+            izq: document.querySelector(`input[name="${rot}_izq"]`)?.value || '',
+            rot,
+            der: document.querySelector(`input[name="${rot}_der"]`)?.value || ''
+        })),
+        //Pruebas y evaluaciones complementarias
+        prueba1: obtenerValor('Pruebas_1_MiembrosSuperiores'),
+        resultadoAnalisis1: obtenerValor('Resultados_y_análisis_1_MiembrosSuperiores'),
+        prueba2: obtenerValor('Pruebas_2_MiembrosSuperiores'),
+        resultadoAnalisis2: obtenerValor('Resultados_y_análisis_2_MiembrosSuperiores'),
+        prueba3: obtenerValor('Pruebas_3_MiembrosSuperiores'),
+        resultadoAnalisis3: obtenerValor('Resultados_y_análisis_3_MiembrosSuperiores'),
+        prueba4: obtenerValor('Pruebas_4_MiembrosSuperiores'),
+        resultadoAnalisis4: obtenerValor('Resultados_y_análisis_4_MiembrosSuperiores'),
+
+    };
+    localStorage.setItem('datosFormularioMiembroSup', JSON.stringify(datosFormularioMiembroSup));
+    // Mostrar datos en la consola
+    console.log(datosFormularioMiembroSup);
 }
 
 function mostrarDatosDatos() {
     const datosFormulario = JSON.parse(localStorage.getItem('datosFormulario'));
     console.log(datosFormulario)
 }
+
+//Muestra los datos del form Miembro Superior
+// function mostrarDatosDatos() {
+//     const datosFormularioMiembroSup = JSON.parse(localStorage.getItem('datosFormularioMiembroSup'));
+//     console.log(datosFormularioMiembroSup)
+// }
+
+
 
 // Enviar los datos al servidor mediante AJAX
 function enviarDatosAlServidor() {
@@ -128,13 +180,56 @@ function enviarDatosAlServidor() {
     });
 }
 
+//Envia los datos del formulario de Miembro Superior
+function enviarDatosMiembroSup() {
+    const datosFormulario = JSON.parse(localStorage.getItem('datosFormularioMiembroSup'));
+    const datosFormularioFicha = JSON.parse(localStorage.getItem('datosFormulario'));
+
+    fetch('/guardar_datosMiembroSup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datosFormulario)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Datos guardados exitosamente');
+            localStorage.clear(); // Eliminar todos los datos de localStorage
+            window.location.href = '/'; // Redirigir a Home.html
+        } else {
+            alert('Error al guardar los datos');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+// Agregar event listeners a todos los campos relevantes
+// document.querySelectorAll('input, select, textarea').forEach(element => {
+//     element.addEventListener('change', guardarDatosEnTiempoReal());
+// });
+
+// Agregar event listener al botón para enviar datos
+// document.getElementById('enviarDatos').addEventListener('click', enviarDatosAlServidor());
+// document.getElementById('mostrarDatos').addEventListener('click', mostrarDatosDatos());
 
 // Agregar event listeners a todos los campos relevantes
 document.querySelectorAll('input, select, textarea').forEach(element => {
-    element.addEventListener('change', guardarDatosEnTiempoReal);
+    if (element) {
+        element.addEventListener('change', guardarDatosEnTiempoReal);
+    }
+});
+document.querySelectorAll('input, select, textarea').forEach(element => {
+    if (element) {
+        element.addEventListener('change', guardarMiembroSuperior);
+    }
 });
 
 // Agregar event listener al botón para enviar datos
-document.getElementById('enviarDatos').addEventListener('click', enviarDatosAlServidor);
+document.getElementById('enviarDatos')?.addEventListener('click', enviarDatosAlServidor);
+//document.getElementById('enviarDatos')?.addEventListener('click', enviarDatosMiembroSup);
 
-document.getElementById('mostrarDatos').addEventListener('click', mostrarDatosDatos);
+document.getElementById('mostrarDatos')?.addEventListener('click', mostrarDatosDatos);

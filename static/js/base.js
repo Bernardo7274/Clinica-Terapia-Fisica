@@ -49,3 +49,13 @@ function eliminarContenedor6() {
     var contenedor = document.getElementById('contenedorFicha6');
     contenedor.parentNode.removeChild(contenedor);
 }
+
+function eliminarContenedor7() {
+    var contenedor = document.getElementById('contenedorFicha7');
+    contenedor.parentNode.removeChild(contenedor);
+}
+
+function eliminarContenedor(elementId) {
+    var contenedor = document.getElementById(elementId);
+    contenedor.parentNode.removeChild(contenedor);
+}

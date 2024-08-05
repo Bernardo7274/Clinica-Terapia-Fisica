@@ -9,10 +9,10 @@
 <h1 class="text-center bold-text">Miembros Superiores</h1>
 <div id="contenedorFicha7" class="card mb-3">
     <div class="card-header" data-toggle="collapse" data-target="#miembrosSuperiores" aria-expanded="true"
-        aria-controls="miembrosSuperiores">
+        aria-controls="miembrosSuperiores"> 
         Miembros Superiores
         <i class="fas fa-chevron-up float-right"></i>
-        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor7()">Eliminar
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor('contenedorFicha7')">Eliminar
             sección</button>
     </div>
     <div id="miembrosSuperiores" class="collapse show">
@@ -56,7 +56,7 @@
         aria-controls="fuerzaMuscular">
         Fuerza muscular
         <i class="fas fa-chevron-up float-right"></i>
-        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor8()">Eliminar
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor('contenedorFicha8')">Eliminar
             sección</button>
     </div>
     <div id="fuerzaMuscular" class="collapse show">
@@ -74,136 +74,141 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr> 
                                     <td><input type="text" class="form-control"
-                                            name="abducción_y_rotación_superior_de_la_escápula_izquierdo"
-                                            placeholder=""></td>
+                                            name="Abducción_y_rotación_superior_de_la_escápula_izquierdo"
+                                            id="abducción_y_rotación_superior_de_la_escápula_izquierdo"
+                                            placeholder="">
+                                    </td>
                                     <td class="text-center">Abducción y rotación superior de la escápula</td>
                                     <td><input type="text" class="form-control"
-                                            name="abducción_y_rotación_superior_de_la_escápula_derecho" placeholder="">
+                                        id="Abducción_y_rotación_superior_de_la_escápula_derecho"
+                                            name="Abducción_y_rotación_superior_de_la_escápula_derecho" placeholder="">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" class="form-control"
-                                            name="elevación_de_la_escápula_izquierdo" placeholder=""></td>
+                                            name="Elevación_de_la_escápula_izquierdo" placeholder=""></td>
                                     <td class="text-center">Elevación de la escápula</td>
-                                    <td><input type="text" class="form-control" name="elevación_de_la_escápula_derecho"
+                                    <td><input type="text" class="form-control" name="Elevación_de_la_escápula_derecho"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="aducción_de_la_escápula_izquierdo"
+                                    <td><input type="text" class="form-control" name="Aducción_de_la_escápula_izquierdo"
                                             placeholder=""></td>
                                     <td class="text-center">Aducción de la escápula</td>
-                                    <td><input type="text" class="form-control" name="aducción_de_la_escápula_derecho"
+                                    <td><input type="text" class="form-control" name="Aducción_de_la_escápula_derecho"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" class="form-control"
-                                            name="aducción_y_descenso_escapular_izquierdo" placeholder=""></td>
+                                            name="Aducción_y_descenso_escapular_izquierdo" placeholder=""></td>
                                     <td class="text-center">Aducción y descenso escapular</td>
                                     <td><input type="text" class="form-control"
-                                            name="aducción_y_descenso_escapular_derecho" placeholder=""></td>
+                                            name="Aducción_y_descenso_escapular_derecho" placeholder=""></td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" class="form-control"
-                                            name="aducción_y_rotación_inferior_de_la_escápula_izquierdo" placeholder="">
+                                            name="Aducción_y_rotación_inferior_de_la_escápula_izquierdo" placeholder="">
                                     </td>
                                     <td class="text-center">Aducción y rotación inferior de la escápula</td>
                                     <td><input type="text" class="form-control"
-                                            name="aducción_y_rotación_inferior_de_la_escápula_derecho" placeholder="">
+                                            name="Aducción_y_rotación_inferior_de_la_escápula_derecho" placeholder="">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="flexión_del_hombro_izquierdo"
+                                    <td><input type="text" class="form-control" name="Flexión_del_hombro_izquierdo"
                                             placeholder=""></td>
                                     <td class="text-center">Flexión del hombro</td>
-                                    <td><input type="text" class="form-control" name="flexión_del_hombro_derecho"
+                                    <td><input type="text" class="form-control" name="Flexión_del_hombro_derecho"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="extensión_de_hombro_izquierdo"
+                                    <td><input type="text" class="form-control" name="Extensión_de_hombro_izquierdo"
                                             placeholder=""></td>
                                     <td class="text-center">Extensión de hombro</td>
-                                    <td><input type="text" class="form-control" name="extensión_de_hombro_derecho"
+                                    <td><input type="text" class="form-control" name="Extensión_de_hombro_derecho"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="abducción_del_hombro_izquierdo"
+                                    <td><input type="text" class="form-control" name="Abducción_del_hombro_izquierdo"
                                             placeholder=""></td>
                                     <td class="text-center">Abducción del hombro</td>
-                                    <td><input type="text" class="form-control" name="abducción_del_hombro_derecho"
+                                    <td><input type="text" class="form-control" name="Abducción_del_hombro_derecho"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" class="form-control"
-                                            name="abducción_horizontal_del_hombro_izquierdo" placeholder=""></td>
+                                            name="Abducción_horizontal_del_hombro_izquierdo" placeholder=""></td>
                                     <td class="text-center">Abducción horizontal del hombro</td>
                                     <td><input type="text" class="form-control"
-                                            name="abducción_horizontal_del_hombro_derecho" placeholder=""></td>
+                                            name="Abducción_horizontal_del_hombro_derecho" placeholder=""></td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" class="form-control"
-                                            name="aducción_horizontal_del_hombro_izquierdo" placeholder=""></td>
+                                            name="Aducción_horizontal_del_hombro_izquierdo" placeholder=""></td>
                                     <td class="text-center">Aducción horizontal del hombro</td>
                                     <td><input type="text" class="form-control"
-                                            name="aducción_horizontal_del_hombro_derecho" placeholder=""></td>
+                                            name="Aducción_horizontal_del_hombro_derecho" placeholder=""></td>
 
                                 </tr>
                                 <tr>
                                     <td><input type="text" class="form-control"
-                                            name="rotación_externa_del_hombro_izquierdo" placeholder=""></td>
+                                            name="Rotación_externa_del_hombro_izquierdo" placeholder=""></td>
                                     <td class="text-center">Rotación externa del hombro</td>
                                     <td><input type="text" class="form-control"
-                                            name="rotación_externa_del_hombro_derecho" placeholder=""></td>
+                                            name="Rotación_externa_del_hombro_derecho" placeholder=""></td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" class="form-control"
-                                            name="rotación_interna_del_hombro_izquierdo" placeholder=""></td>
+                                            name="Rotación_interna_del_hombro_izquierdo" placeholder=""></td>
                                     <td class="text-center">Rotación interna del hombro</td>
                                     <td><input type="text" class="form-control"
-                                            name="rotación_interna_del_hombro_derecho" placeholder=""></td>
+                                            name="Rotación_interna_del_hombro_derecho" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="flexión_de_codo_izquierdo"
+                                    <td><input type="text" class="form-control" name="Flexión_de_codo_izquierdo"
                                             placeholder=""></td>
                                     <td class="text-center">Flexión de codo</td>
-                                    <td><input type="text" class="form-control" name="flexión_de_codo_derecho"
+                                    <td><input type="text" class="form-control" name="Flexión_de_codo_derecho"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="extensión_de_codo_izquierdo"
+                                    <td><input type="text" class="form-control" name="Extensión_de_codo_izquierdo"
                                             placeholder=""></td>
                                     <td class="text-center">Extensión de codo</td>
-                                    <td><input type="text" class="form-control" name="extensión_de_codo_derecho"
+                                    <td><input type="text" class="form-control" name="Extensión_de_codo_derecho"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" class="form-control"
-                                            name="supinación_del_antebrazo_izquierdo" placeholder=""></td>
+                                            name="Supinación_del_antebrazo_izquierdo" placeholder=""></td>
                                     <td class="text-center">Supinación del antebrazo</td>
-                                    <td><input type="text" class="form-control" name="supinación_del_antebrazo_derecho"
+                                    <td><input type="text" class="form-control" name="Supinación_del_antebrazo_derecho"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="pronación_del_antebrazo_izquierdo"
+                                    <td><input type="text" class="form-control" name="Pronación_del_antebrazo_izquierdo"
                                             placeholder=""></td>
                                     <td class="text-center">Pronación del antebrazo</td>
-                                    <td><input type="text" class="form-control" name="pronación_del_antebrazo_derecho"
+                                    <td><input type="text" class="form-control" name="Pronación_del_antebrazo_derecho"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="flexión_de_la_muñeca_izquierdo"
+                                    <td><input type="text" class="form-control" name="Flexión_de_la_muñeca_izquierdo"
                                             placeholder=""></td>
                                     <td class="text-center">Flexión de la muñeca</td>
-                                    <td><input type="text" class="form-control" name="flexión_de_la_muñeca_derecho"
+                                    <td><input type="text" class="form-control" name="Flexión_de_la_muñeca_derecho"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="extensión_de_la_muñeca_izquierdo"
+                                    <td><input type="text" class="form-control" name="Extensión_de_la_muñeca_izquierdo"
                                             placeholder=""></td>
                                     <td class="text-center">Extensión de la muñeca</td>
-                                    <td><input type="text" class="form-control" name="extensión_de_la_muñeca_derecho"
-                                            placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Extensión_de_la_muñeca_derecho"
+                                            placeholder="" >
+
+                                        </td>
                                 </tr>
                                 <label>* Escala de Daniels y Worthingham</label>
                             </tbody>
@@ -219,7 +224,7 @@
         aria-controls="goniometría1">
         Goniometría
         <i class="fas fa-chevron-up float-right"></i>
-        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor9()">Eliminar
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor('contenedorFicha9')">Eliminar
             sección</button>
     </div>
     <div id="goniometría1" class="collapse show">
@@ -235,129 +240,96 @@
                                     <th scope="col">Izquierdo</th>
                                     <th scope="col">Movimiento</th>
                                     <th scope="col">Derecha</th>
-
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>0°-150°/170°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-150°/170°_flexión_de_hombro_izquierdo" placeholder=""></td>
+                                    <td data-movimiento="Flexión_de_hombro_Gonio">0°-150°/170°</td>
+                                    <td><input type="text" class="form-control" name="Flexión_de_hombro_izquierdoGonio" placeholder=""></td>
                                     <td>Flexión de hombro</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-150°/170°_flexión_de_hombro_derecho" placeholder=""></td>
-
+                                    <td><input type="text" class="form-control" name="Flexión_de_hombro_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°-40°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-40°_extensión_de_hombro_izquierdo" placeholder=""></td>
+                                    <td data-movimiento="Extensión_de_hombro_Gonio">0°-40°</td>
+                                    <td><input type="text" class="form-control" name="Extensión_de_hombro_izquierdoGonio" placeholder=""></td>
                                     <td>Extensión de hombro</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-40°_extensión_de_hombro_derecho" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Extensión_de_hombro_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0-160°/180°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0-160°/180°_abducción_de_hombro_izquierdo" placeholder=""></td>
+                                    <td data-movimiento="Abducción_de_hombro_Gonio">0°-160°/180°</td>
+                                    <td><input type="text" class="form-control" name="Abducción_de_hombro_izquierdoGonio" placeholder=""></td>
                                     <td>Abducción de hombro</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0-160°/180°_abducción_de_hombro_derecho" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Abducción_de_hombro_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°-30°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-30°_aducción_de_hombro_izquierdo" placeholder=""></td>
+                                    <td data-movimiento="Aducción_de_hombro_Gonio">0°-30°</td>
+                                    <td><input type="text" class="form-control" name="Aducción_de_hombro_izquierdoGonio" placeholder=""></td>
                                     <td>Aducción de hombro</td>
-                                    <td><input type="text" class="form-control" name="0°-30°_aducción_de_hombro_derecho"
-                                            placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Aducción_de_hombro_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°-70°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-70°_rotación_externa_de_hombro_izquierdo" placeholder=""></td>
+                                    <td data-movimiento="Rotación_externa_de_hombro_Gonio">0°-70°</td>
+                                    <td><input type="text" class="form-control" name="Rotación_externa_de_hombro_izquierdoGonio" placeholder=""></td>
                                     <td>Rotación externa de hombro</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-70°_rotación_externa_de_hombro_derecho" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Rotación_externa_de_hombro_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°-70°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-70°_rotación_interna_de_hombro_izquierdo" placeholder=""></td>
+                                    <td data-movimiento="Rotación_interna_de_hombro_Gonio">0°-70°</td>
+                                    <td><input type="text" class="form-control" name="Rotación_interna_de_hombro_izquierdoGonio" placeholder=""></td>
                                     <td>Rotación interna de hombro</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-70°_rotación_interna_de_hombro_derecho" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Rotación_interna_de_hombro_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°-150°</td>
-                                    <td><input type="text" class="form-control" name="0°-150°_flexión_de_codo_izquierdo"
-                                            placeholder=""></td>
+                                    <td data-movimiento="Flexión_de_codo_Gonio">0°-150°</td>
+                                    <td><input type="text" class="form-control" name="Flexión_de_codo_izquierdoGonio" placeholder=""></td>
                                     <td>Flexión de codo</td>
-                                    <td><input type="text" class="form-control" name="0°-150°_flexión_de_codo_derecho"
-                                            placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Flexión_de_codo_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°(activa)-10°(pasiva)</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°(activa)-10°(pasiva)_extensión_de_codo_izquierdo" placeholder="">
-                                    </td>
+                                    <td data-movimiento="Extensión_de_codo_Gonio">0°(activa)-10°(pasiva)</td>
+                                    <td><input type="text" class="form-control" name="Extensión_de_codo_izquierdoGonio" placeholder=""></td>
                                     <td>Extensión de codo</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°(activa)-10°(pasiva)_extensión_de_codo_derecho" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Extensión_de_codo_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°-90°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-90°_supinación_del_antebrazo_izquierdo" placeholder=""></td>
+                                    <td data-movimiento="Supinación_del_antebrazo_Gonio">0°-90°</td>
+                                    <td><input type="text" class="form-control" name="Supinación_del_antebrazo_izquierdoGonio" placeholder=""></td>
                                     <td>Supinación del antebrazo</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-90°_supinación_del_antebrazo_derecho" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Supinación_del_antebrazo_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°-90°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-90°_pronación_del_antebrazo_izquierdo" placeholder=""></td>
+                                    <td data-movimiento="Pronación_del_antebrazo_Gonio">0°-90°</td>
+                                    <td><input type="text" class="form-control" name="Pronación_del_antebrazo_izquierdoGonio" placeholder=""></td>
                                     <td>Pronación del antebrazo</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-90°_pronación_del_antebrazo_derecho" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Pronación_del_antebrazo_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°-25°-30°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-25°-30°_desviación_radial_de_muñeca_izquierdo" placeholder=""></td>
+                                    <td data-movimiento="Desviación_radial_de_muñeca_Gonio">0°-25°/30°</td>
+                                    <td><input type="text" class="form-control" name="Desviación_radial_de_muñeca_izquierdoGonio" placeholder=""></td>
                                     <td>Desviación radial de muñeca</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-25°-30°_desviación_radial_de_muñeca_derecho" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Desviación_radial_de_muñeca_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°-30°-40°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-30°-40°_desviación_cubital_de_la_muñeca_izquierdo" placeholder="">
-                                    </td>
+                                    <td data-movimiento="Desviación_cubital_de_la_muñeca_Gonio">0°-30°/40°</td>
+                                    <td><input type="text" class="form-control" name="Desviación_cubital_de_la_muñeca_izquierdoGonio" placeholder=""></td>
                                     <td>Desviación cubital de la muñeca</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-30°-40°_desviación_cubital_de_la_muñeca_derecho" placeholder="">
-                                    </td>
+                                    <td><input type="text" class="form-control" name="Desviación_cubital_de_la_muñeca_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°-50°/60°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-50°/60°_flexión_de_muñeca_izquierdo" placeholder=""></td>
+                                    <td data-movimiento="Flexión_de_muñeca_Gonio">0°-50°/60°</td>
+                                    <td><input type="text" class="form-control" name="Flexión_de_muñeca_izquierdoGonio" placeholder=""></td>
                                     <td>Flexión de muñeca</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-50°/60°_flexión_de_muñeca_derecho" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Flexión_de_muñeca_derechoGonio" placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td>0°-35°/60°</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-35°/60°_extensión_de_muñeca_izquierdo" placeholder=""></td>
+                                    <td data-movimiento="Extensión_de_muñeca_Gonio">0°-35°/60°</td>
+                                    <td><input type="text" class="form-control" name="Extensión_de_muñeca_izquierdoGonio" placeholder=""></td>
                                     <td>Extensión de muñeca</td>
-                                    <td><input type="text" class="form-control"
-                                            name="0°-35°/60°_extensión_de_muñeca_derecho" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Extensión_de_muñeca_derechoGonio" placeholder=""></td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
+                    </div>                    
                 </div>
             </form>
         </div>
@@ -368,7 +340,7 @@
         aria-controls="reflejosOsteotendinosos">
         Reflejos osteotendinosos
         <i class="fas fa-chevron-up float-right"></i>
-        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor10()">Eliminar
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor('contenedorFicha10')">Eliminar
             sección</button>
     </div>
     <div id="reflejosOsteotendinosos" class="collapse show">
@@ -388,7 +360,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="Bicipital_izq" placeholder="">
+                                    <td><input type="text" class="form-control" name="Bicipital_izq" 
+                                        placeholder="">
                                     </td>
                                     <td>Bicipital</td>
                                     <td><input type="text" class="form-control" name="Bicipital_der" placeholder="">
@@ -429,7 +402,7 @@
         aria-expanded="true" aria-controls="pruebasYevaluacionesComplementarias">
         Pruebas y evaluaciones complementarias
         <i class="fas fa-chevron-up float-right"></i>
-        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor11()">Eliminar
+        <button type="button" class="btn btn-danger btn-sm float-right mr-2" onclick="eliminarContenedor('contenedorFicha11')">Eliminar
             sección</button>
     </div>
     <div id="pruebasYevaluacionesComplementarias" class="collapse show">
@@ -449,24 +422,28 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="Pruebas_1_MiembrosSuperiores" placeholder=""></td>
-                                    <td><input type="text" class="form-control" name="Resultados y análisis_1_MiembrosSuperiores"
+                                    <td><input type="text" class="form-control" name="Pruebas_1_MiembrosSuperiores" id="Pruebas_1_MiembrosSuperiores" placeholder=""></td>
+                                    <td><input type="text" class="form-control" id="Resultados_y_análisis_1_MiembrosSuperiores" name="Resultados_y_análisis_1_MiembrosSuperiores"
                                             placeholder=""></td>
 
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="Pruebas_2_MiembrosSuperiores" placeholder=""></td>
-                                    <td><input type="text" class="form-control" name="Resultados y análisis_2_MiembrosSuperiores"
+                                    <td><input type="text" class="form-control" name="Pruebas_2_MiembrosSuperiores" id="Pruebas_2_MiembrosSuperiores" placeholder=""></td>
+                                    <td><input type="text" class="form-control"
+                                        id="Resultados_y_análisis_2_MiembrosSuperiores"
+                                        name="Resultados_y_análisis_2_MiembrosSuperiores"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="Pruebas_3_MiembrosSuperiores" placeholder=""></td>
-                                    <td><input type="text" class="form-control" name="Resultados y análisis_3_MiembrosSuperiores"
+                                    <td><input type="text" class="form-control" name="Pruebas_3_MiembrosSuperiores" id="Pruebas_3_MiembrosSuperiores" placeholder=""></td>
+                                    <td><input type="text" class="form-control" name="Resultados_y_análisis_3_MiembrosSuperiores"
+                                        id="Resultados_y_análisis_3_MiembrosSuperiores"
                                             placeholder=""></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="Pruebas_4_MiembrosSuperiores" placeholder=""></td>
-                                    <td><input type="text" class="form-control" name="Resultados y análisis_4_MiembrosSuperiores"
+                                    <td><input type="text" class="form-control" name="Pruebas_4_MiembrosSuperiores" id="Pruebas_4_MiembrosSuperiores" placeholder=""></td>
+                                    <td><input type="text" class="form-control"
+                                        id="Resultados_y_análisis_4_MiembrosSuperiores" name="Resultados_y_análisis_4_MiembrosSuperiores"
                                             placeholder=""></td>
                                 </tr>
                             </tbody>

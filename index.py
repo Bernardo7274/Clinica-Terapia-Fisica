@@ -169,5 +169,33 @@ def guardar_datos():
 
     return jsonify({'success': True})
 
+
+@app.route('/guardar_datosMiembroSup', methods=['POST'])
+def guardar_datosMiembroSup():
+    datos = request.json
+    connection = create_connection()
+    cursor = connection.cursor()
+
+
+    partesCuerpo_query = """
+    INSERT INTO partes_cuerpo_miembro_superior(`id_ficha`, `id_partes`, `observacion`, `palpacion`, `descripcion`, `dolor`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]')
+    """
+
+    # Insertar datos en ficha_identificaciones
+    fuerzaMuscular_query = """
+    INSERT INTO fuerza_muscular_miembro_superior (derecha, movimiento, izquierda) 
+    VALUES (%s, %s, %s)
+    """
+    fuerzaMuscular_data = (
+        datos['fechaElaboracion'], datos['nombrePaciente'], datos['sexo'], datos['folio'], datos['edad'],
+        datos['fechaNacimiento'], datos['lugarNacimiento'], datos['ocupacion'], datos['domicilioActual'],
+        datos['estadoCivil'], datos['nacionalidad'], datos['telefono'], datos['nombreContactoEmergencia'],
+        datos['telefonoEmergencia'], datos['diagnosticoMedico'], datos['elaboroHistorial'], datos['motivoConsulta']
+    )
+    cursor.execute(fuerzaMuscular_query, fuerzaMuscular_data)
+    connection.commit()
+    id_ficha = cursor.lastrowid  # Obtener el último ID insertado
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5011)
