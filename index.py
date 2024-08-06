@@ -171,3 +171,27 @@ def guardar_datos():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5011)
+
+    from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# Ruta existente para la inserción de otros datos
+@app.route('/guardar_datos', methods=['POST'])
+def guardar_datos():
+    datos = request.json
+    # Procesar y guardar los datos
+    # ...
+    return jsonify(success=True)
+
+# Nueva ruta para guardar los datos de cabeza y tórax
+@app.route('/guardar_datos_cabeza_torax', methods=['POST'])
+def guardar_datos_cabeza_torax():
+    datos = request.json
+    # Procesar y guardar los datos de cabeza y tórax
+    # ...
+    return jsonify(success=True)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
