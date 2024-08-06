@@ -229,7 +229,7 @@ document.querySelectorAll('input, select, textarea').forEach(element => {
 });
 
 // Agregar event listener al botón para enviar datos
-document.getElementById('enviarDatos')?.addEventListener('click', enviarDatosAlServidor);
-//document.getElementById('enviarDatos')?.addEventListener('click', enviarDatosMiembroSup);
+// document.getElementById('enviarDatos')?.addEventListener('click', enviarDatosAlServidor);
+document.getElementById('enviarDatos')?.addEventListener('click', enviarDatosMiembroSup);
 
-document.getElementById('mostrarDatos')?.addEventListener('click', mostrarDatosDatos);
+// document.getElementById('mostrarDatos')?.addEventListener('click', mostrarDatosDatos); 

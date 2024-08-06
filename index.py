@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import mysql.connector
 from mysql.connector import Error
-
+import logging
 app = Flask(__name__)
 
 def create_connection():
@@ -169,32 +169,81 @@ def guardar_datos():
 
     return jsonify({'success': True})
 
-
+logging.basicConfig(level=logging.DEBUG)
 @app.route('/guardar_datosMiembroSup', methods=['POST'])
 def guardar_datosMiembroSup():
     datos = request.json
     connection = create_connection()
     cursor = connection.cursor()
 
-
+    # Insertar PartesCuerpo_MiembroSuperior
     partesCuerpo_query = """
-    INSERT INTO partes_cuerpo_miembro_superior(`id_ficha`, `id_partes`, `observacion`, `palpacion`, `descripcion`, `dolor`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]')
+    INSERT INTO partes_cuerpo_miembro_superior(id_ficha, id_partes, observacion, palpacion, descripcion, dolor)
+    VALUES (%s, %s, %s, %s, %s, %s)
     """
-
-    # Insertar datos en ficha_identificaciones
-    fuerzaMuscular_query = """
-    INSERT INTO fuerza_muscular_miembro_superior (derecha, movimiento, izquierda) 
-    VALUES (%s, %s, %s)
-    """
-    fuerzaMuscular_data = (
-        datos['fechaElaboracion'], datos['nombrePaciente'], datos['sexo'], datos['folio'], datos['edad'],
-        datos['fechaNacimiento'], datos['lugarNacimiento'], datos['ocupacion'], datos['domicilioActual'],
-        datos['estadoCivil'], datos['nacionalidad'], datos['telefono'], datos['nombreContactoEmergencia'],
-        datos['telefonoEmergencia'], datos['diagnosticoMedico'], datos['elaboroHistorial'], datos['motivoConsulta']
+    partesCuerpo_data = (
+        1, 1, datos['observacion'], datos['palpacion'], datos['descripcion'], datos['dolor']
     )
-    cursor.execute(fuerzaMuscular_query, fuerzaMuscular_data)
+    cursor.execute(partesCuerpo_query, partesCuerpo_data)
     connection.commit()
-    id_ficha = cursor.lastrowid  # Obtener el último ID insertado
+
+    # Insertar datos en Fuerza Muscular
+    for Fuerza in datos['datosMovimientos']:
+        fuerzaMuscular_query = """
+        INSERT INTO fuerza_muscular_miembro_superior (id_ficha, derecha, movimiento, izquierda) 
+        VALUES (%s, %s, %s, %s)
+        """
+        fuerzaMuscular_data = (
+            1, Fuerza['der'], Fuerza['movimiento'], Fuerza['izq']
+        )
+        cursor.execute(fuerzaMuscular_query, fuerzaMuscular_data)
+    connection.commit()
+
+    # Insertar datos en Goniometria
+    for goniometria in datos['datosGoniometria']:
+        goniometria_miembro_superior_patologicos_query = """
+        INSERT INTO goniometria_miembro_superior(id_ficha, rango_normal, izquierdo, movimiento, derecho)
+        VALUES (%s, %s, %s, %s, %s)
+        """
+        goniometria_miembro_superior_data = (
+            1, goniometria['rangoNormal'], goniometria['izq'], goniometria['movimiento'], goniometria['der']
+        )
+        cursor.execute(goniometria_miembro_superior_patologicos_query, goniometria_miembro_superior_data)
+    connection.commit()
+
+    # Insertar datos Reflejos Osteotendinosos
+    for reflejos in datos['datosOsteotendinosos']:
+        relejos_osteotendinosos_query = """
+        INSERT INTO reflejososteotendinosos_miembro_superior(id_ficha, izq, rot, der)
+        VALUES (%s, %s, %s, %s)
+        """
+        relejos_osteotendinosos_data = (
+            1, reflejos['izq'], reflejos['rot'], reflejos['der']
+        )
+        cursor.execute(relejos_osteotendinosos_query, relejos_osteotendinosos_data)
+    connection.commit()
+
+    # Insertar datos en PruebasEvaluacionesComplementarias
+    datos_list = [
+        (1, datos['prueba1'], datos['resultadoAnalisis1']),
+        (1, datos['prueba2'], datos['resultadoAnalisis2']),
+        (1, datos['prueba3'], datos['resultadoAnalisis3']),
+        (1, datos['prueba4'], datos['resultadoAnalisis4'])
+    ]
+    pruebasevaluacionescomplementarias_query = """
+        INSERT INTO pruebasevaluacionescomplementarias_miembro_superior(id_ficha, pruebas, resultadosyanalisis)
+        VALUES (%s, %s, %s)
+    """
+    for data in datos_list:
+        cursor.execute(pruebasevaluacionescomplementarias_query, data)
+    connection.commit()
+    
+    cursor.close()
+    connection.close()
+
+    return jsonify({'success': True})
+
+
 
 
 if __name__ == '__main__':
