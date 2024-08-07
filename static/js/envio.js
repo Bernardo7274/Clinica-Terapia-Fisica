@@ -134,14 +134,14 @@ function enviarDatosAlServidor() {
 
 
 // Agregar event listeners a todos los campos relevantes
-document.querySelectorAll('input, select, textarea').forEach(element => {
-    element.addEventListener('change', guardarDatosEnTiempoReal);
-});
+// document.querySelectorAll('input, select, textarea').forEach(element => {
+//     element.addEventListener('change', guardarDatosEnTiempoReal);
+// });
 
 // Agregar event listener al botón para enviar datos
-document.getElementById('enviarDatos').addEventListener('click', enviarDatosAlServidor);
+// document.getElementById('enviarDatos').addEventListener('click', enviarDatosAlServidor);
 
-document.getElementById('mostrarDatos').addEventListener('click', mostrarDatosDatos);
+// document.getElementById('mostrarDatos').addEventListener('click', mostrarDatosDatos);
 
 
 //********************MIEMBRO INFERIOR*******************************
@@ -161,8 +161,6 @@ function guardarDatosMiembroInf() {
                 movimiento,
                 der: document.querySelector(`input[name="${movimiento.replace(/ /g, '_')}_derecho"]`)?.value || ''
             })),
-
-                    
       
       // Goniometria
         datosGoniometria: [
@@ -239,7 +237,7 @@ function enviarDatosMiembroInf() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(datosFormulario)
+        body: JSON.stringify(datosMiembroInf)
     })
     .then(response => response.json())
     .then(data => {

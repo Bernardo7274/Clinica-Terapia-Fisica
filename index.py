@@ -77,7 +77,7 @@ def guardar_datosMiembroInf():
     VALUES (%s, %s, %s, %s, %s, %s)
     """
     partesCuerpoInf_data = (
-        1, 1, datos['observacion'], datos['palpacion'], datos['descripcion'], datos['dolor']
+        1, 1, datos['observacion'], datos['palpacion'], datos['descripcion'], datos['numdolor']
     )
     cursor.execute(partesCuerpoInf_query, partesCuerpoInf_data)
     connection.commit()
