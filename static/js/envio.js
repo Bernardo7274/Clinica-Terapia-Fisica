@@ -161,16 +161,16 @@ function guardarDatosMiembroInf() {
                 movimiento,
                 der: document.querySelector(`input[name="${movimiento.replace(/ /g, '_')}_derecho"]`)?.value || ''
             })),
-      
+       
       // Goniometria
         datosGoniometria: [
             'Flexion de cadera','Extensión de cadera','Abducción de cadera','Aducción de cadera','Rotación externa de cadera','Rotación interna de cadera','Flexión de rodilla','Extensión de rodilla','Plantiflexión','Dorsiflexión','Inversión del pie','Eversión del pie'
         ].map(movimiento => ({
-            rangoNormal: document.querySelector(`td[data-movimiento="${movimiento.replace(/ /g, '_')}_Gonio"]`)?.textContent.trim() || '',
+            rangoNormal: document.querySelector(`td[name="${movimiento.replace(/ /g, '_')}_Gonio"]`)?.textContent.trim() || '',
             izq: document.querySelector(`input[name="${movimiento.replace(/ /g, '_')}_izquierdoGonio"]`)?.value || '',
             movimiento,
             der: document.querySelector(`input[name="${movimiento.replace(/ /g, '_')}_derechoGonio"]`)?.value || ''
-        })),
+        })), 
 
         //datos osteotendinosos
         datosOsteotendinosos: [

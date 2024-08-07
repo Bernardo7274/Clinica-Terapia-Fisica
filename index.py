@@ -147,7 +147,7 @@ def guardar_datosMiembroInf():
     ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
     ciclo_marchaInf_data = (
-        datos['id_ficha'], datos['faseApoyoCompleto'], datos['contactoTalonIzquierdo'],
+        1, datos['faseApoyoCompleto'], datos['contactoTalonIzquierdo'],
         datos['contactoTalonDerecho'], datos['apoyoPlantarIzquierdo'], datos['apoyoPlantarDerecho'],
         datos['apoyoMedioIzquierdo'], datos['apoyoMedioDerecho'], datos['faseOscilacionCompleto'],
         datos['balanceoInicialIzquierdo'], datos['balanceoInicialDerecho'], datos['balanceoMedioIzquierdo'],
