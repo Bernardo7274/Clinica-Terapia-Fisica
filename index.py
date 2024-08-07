@@ -65,103 +65,99 @@ def ConsultaRegistro():
     
     return render_template('ConsultaRegistro.html', folios=folios, clasificaciones=clasificaciones)
 
-@app.route('/guardar_datos', methods=['POST'])
-def guardar_datos():
+@app.route('/guardar_datosMiembroInf', methods=['POST'])
+def guardar_datosMiembroInf():
     datos = request.json
     connection = create_connection()
     cursor = connection.cursor()
 
-    # Insertar datos en ficha_identificaciones
-    ficha_identificaciones_query = """
-    INSERT INTO ficha_identificaciones (fecha_elaboracion, nombre_paciente, genero, folio, edad, fecha_nacimiento, lugar_nacimiento, ocupacion, domicilio_actual, estado_civil, nacionalidad, telefono, contacto_emergencia_nombre, contacto_emergencia_telefono, diagnostico_medico, elaboro_historial_clinico, motivo_consulta)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    # Insertar PartesCuerpo_MiembroInferior
+    partesCuerpoInf_query = """
+    INSERT INTO partes_cuerpo_miembro_inferior(id_ficha, id_partes, observacion, palpacion, descripcion, dolor)
+    VALUES (%s, %s, %s, %s, %s, %s)
     """
-    ficha_identificaciones_data = (
-        datos['fechaElaboracion'], datos['nombrePaciente'], datos['sexo'], datos['folio'], datos['edad'],
-        datos['fechaNacimiento'], datos['lugarNacimiento'], datos['ocupacion'], datos['domicilioActual'],
-        datos['estadoCivil'], datos['nacionalidad'], datos['telefono'], datos['nombreContactoEmergencia'],
-        datos['telefonoEmergencia'], datos['diagnosticoMedico'], datos['elaboroHistorial'], datos['motivoConsulta']
+    partesCuerpoInf_data = (
+        1, 1, datos['observacion'], datos['palpacion'], datos['descripcion'], datos['dolor']
     )
-    cursor.execute(ficha_identificaciones_query, ficha_identificaciones_data)
-    connection.commit()
-    id_ficha = cursor.lastrowid  # Obtener el último ID insertado
-
-    # Insertar datos en antecedentespersonalesnopatologicos
-    antecedentes_personales_query = """
-    INSERT INTO antecedentespersonalesnopatologicos (id_ficha, PropiaRenta, Ventilacion, Iluminacion, Piso, Electrodomesticos, Servicios, DescripcionVivienda, NoComidasDia, AguaLts, GruposAlimenticios, DescripcionRutinaAlimenticia, HigieneBucal, BanosDia, CambiosRopa, ActividadFisica, Deporte, Ocio, Ocupacion)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    """
-    antecedentes_personales_data = (
-        id_ficha, datos['PropiaRenta'], datos['Ventilacion'], datos['Iluminacion'], datos['Piso'],
-        datos['Electrodomesticos'], datos['Servicios'], datos['DescripcionVivienda'], datos['NoComidasDia'],
-        datos['AguaLts'], datos['GruposAlimenticios'], datos['DescripcionRutinaAlimenticia'], datos['HigieneBucal'],
-        datos['BanosDia'], datos['CambiosRopa'], datos['ActividadFisica'], datos['Deporte'], datos['Ocio'],
-        datos['Ocupacion1']
-    )
-    cursor.execute(antecedentes_personales_query, antecedentes_personales_data)
+    cursor.execute(partesCuerpoInf_query, partesCuerpoInf_data)
     connection.commit()
 
-    # Insertar datos en antecedentesheredofamiliares
-    for antecedente in datos['antecedentes']:
-        antecedentes_heredofamiliares_query = """
-        INSERT INTO antecedentesheredofamiliares (id_ficha, enfermedad, si, no, parentesco, vivo, muerto, otro, observaciones)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    # Insertar datos en Fuerza Muscular
+    for FuerzaInf in datos['datosMovimientos']:
+        fuerzaMuscularInf_query = """
+        INSERT INTO fuerza_muscular_miembro_inferior (id_ficha, derecha, movimiento, izquierda) 
+        VALUES (%s, %s, %s, %s)
         """
-        antecedentes_heredofamiliares_data = (
-            id_ficha, antecedente['enfermedad'], antecedente['si'], antecedente['no'], antecedente['parentesco'],
-            antecedente['vivo'], antecedente['muerto'], datos['otro'], datos['observaciones']
+        fuerzaMuscularInf_data = (
+            1, FuerzaInf['der'], FuerzaInf['movimiento'], FuerzaInf['izq']
         )
-        cursor.execute(antecedentes_heredofamiliares_query, antecedentes_heredofamiliares_data)
+        cursor.execute(fuerzaMuscularInf_query, fuerzaMuscularInf_data)
     connection.commit()
 
-    # Insertar datos en antecedentes_patologicos
-    for patologico in datos['datosPatologicos']:
-        antecedentes_patologicos_query = """
-        INSERT INTO antecedentes_patologicos (id_ficha, patologia, si, no, edad_presentacion, secuelas_complicaciones, inmunizaciones, observaciones)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    # Insertar datos en Goniometria
+    for goniometria in datos['datosGoniometria']:
+        goniometria_miembro_inferior_query = """
+        INSERT INTO goniometria_miembro_inferior(id_ficha, rango_normal, izquierdo, movimiento, derecho)
+        VALUES (%s, %s, %s, %s, %s)
         """
-        antecedentes_patologicos_data = (
-            id_ficha, patologico['patologia'], patologico['si_pa'], patologico['no_pa'], patologico['edad_presento'],
-            patologico['secuela'], datos['inmunizaciones'], datos['observaciones1']
+        goniometria_miembro_inferior_data = (
+            1, goniometria['rangoNormal'], goniometria['izq'], goniometria['movimiento'], goniometria['der']
         )
-        cursor.execute(antecedentes_patologicos_query, antecedentes_patologicos_data)
+        cursor.execute(goniometria_miembro_inferior_query, goniometria_miembro_inferior_data)
     connection.commit()
 
-    # Insertar datos en antecedentes_ginecobstetricos
-    antecedentes_ginecobstetricos_query = """
-    INSERT INTO antecedentes_ginecobstetricos (id_ficha, menarquia, fecha_ultima_menstruacion, caracteristicas_menstruacion, inicio_vida_sexual, uso_anticonceptivos, numero_embarazos, numero_partos, numero_cesareas, observaciones)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    """
-    antecedentes_ginecobstetricos_data = (
-        id_ficha, datos['menarquia'], datos['fecha_ultima_menstruacion'], datos['caracteristicas_menstruacion'],
-        datos['inicio_vida_sexual'], datos['uso_anticonceptivos'], datos['numero_embarazos'], datos['numero_partos'],
-        datos['numero_cesareas'], datos['observaciones_gine']
-    )
-    cursor.execute(antecedentes_ginecobstetricos_query, antecedentes_ginecobstetricos_data)
+    # Insertar datos Reflejos Osteotendinosos
+    for reflejos in datos['datosOsteotendinosos']:
+        reflejososteotendinosos_miembro_inferior_query = """
+        INSERT INTO reflejososteotendinosos_miembro_inferior(id_ficha, izq, rot, der)
+        VALUES (%s, %s, %s, %s)
+        """
+        reflejososteotendinosos_miembro_inferior_data = (
+            1, reflejos['izq'], reflejos['rot'], reflejos['der']
+        )
+        cursor.execute(reflejososteotendinosos_miembro_inferior_query, reflejososteotendinosos_miembro_inferior_data)
     connection.commit()
 
-    # Insertar datos en antecedentes_padecimientoactual
-    antecedentes_padecimientoactual_query = """
-    INSERT INTO antecedentes_padecimientoactual (id_ficha, descripcion)
-    VALUES (%s, %s)
+    # Insertar datos en PruebasEvaluacionesComplementarias
+    datos_list = [
+        (1, datos['prueba1'], datos['resultadoAnalisis1']),
+        (1, datos['prueba2'], datos['resultadoAnalisis2']),
+        (1, datos['prueba3'], datos['resultadoAnalisis3']),
+        (1, datos['prueba4'], datos['resultadoAnalisis4'])
+    ]
+    pruebasevaluacionescomplementarias_miembro_inferior_query = """
+        INSERT INTO pruebasevaluacionescomplementarias_miembro_inferior(id_ficha, pruebas, resultadosyanalisis)
+        VALUES (%s, %s, %s)
     """
-    antecedentes_padecimientoactual_data = (
-        id_ficha, datos['ac_descripcion']
-    )
-    cursor.execute(antecedentes_padecimientoactual_query, antecedentes_padecimientoactual_data)
+    for data in datos_list:
+        cursor.execute(pruebasevaluacionescomplementarias_miembro_inferior_query, data)
     connection.commit()
 
-    # Insertar datos en exploracion
-    exploracion_query = """
-    INSERT INTO exploracion (id_ficha, habitus_exterior, peso, altura, imc, temperatura, pulso_cardiaco, frecuencia_respiratoria, presion_arterial, saturacion_oxigeno, observaciones, resultados_previos_actuales)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    # Insertar datos en Ciclo Marcha
+    cicloMarchaInf_query = """
+    INSERT INTO ciclo_marcha_miembro_inferior (
+        id_ficha, fase_apoyo_completo, contacto_talon_izquierdo, contacto_talon_derecho,
+        apoyo_plantar_izquierdo, apoyo_plantar_derecho, apoyo_medio_izquierdo,
+        apoyo_medio_derecho, fase_oscilacion_completo, balanceo_inicial_izquierdo,
+        balanceo_inicial_derecho, balanceo_medio_izquierdo, balanceo_medio_derecho,
+        balanceo_terminal_izquierdo, balanceo_terminal_derecho, rotacion_pelvica_completo,
+        inclinacion_pelvica_completo, flexion_rodilla_izquierdo, flexion_rodilla_derecho,
+        movimientos_coordinados_rodilla_tobillo_izquierdo, movimientos_coordinados_rodilla_tobillo_derecho,
+        movimiento_centro_gravedad_completo, cadencia_completo, balanceo_ms_completo
+    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
-    exploracion_data = (
-        id_ficha, datos['habitus_exterior'], datos['peso'], datos['altura'], datos['imc'], datos['temperatura'],
-        datos['pulso_cardiaco'], datos['frecuencia_respiratoria'], datos['presion_arterial'], datos['saturacion_oxigeno'],
-        datos['observaciones2'], datos['resultados_previos_actuales']
+    ciclo_marchaInf_data = (
+        datos['id_ficha'], datos['faseApoyoCompleto'], datos['contactoTalonIzquierdo'],
+        datos['contactoTalonDerecho'], datos['apoyoPlantarIzquierdo'], datos['apoyoPlantarDerecho'],
+        datos['apoyoMedioIzquierdo'], datos['apoyoMedioDerecho'], datos['faseOscilacionCompleto'],
+        datos['balanceoInicialIzquierdo'], datos['balanceoInicialDerecho'], datos['balanceoMedioIzquierdo'],
+        datos['balanceoMedioDerecho'], datos['balanceoTerminalIzquierdo'], datos['balanceoTerminalDerecho'],
+        datos['rotacionPelvicaCompleto'], datos['inclinacionPelvicaCompleto'], datos['flexionRodillaIzquierdo'],
+        datos['flexionRodillaDerecho'], datos['movimientosCoordinadosRodillaTobilloIzquierdo'],
+        datos['movimientosCoordinadosRodillaTobilloDerecho'], datos['movimientoCentroGravedadCompleto'],
+        datos['cadenciaCompleto'], datos['balanceoMsCompleto']
     )
-    cursor.execute(exploracion_query, exploracion_data)
+    cursor.execute(cicloMarchaInf_query, ciclo_marchaInf_data)
     connection.commit()
 
     cursor.close()
